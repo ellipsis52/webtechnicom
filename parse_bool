@@ -1,0 +1,5 @@
+DELETE /v3/voice_out_trunks/c3947e93-4a3b-4080-b9d3-cbcc633ab808 HTTP/1.1
+Host: api.didww.com
+Content-Type: application/vnd.api+json
+Accept: application/vnd.api+json
+Api-Key: [API token]

@@ -1,0 +1,4 @@
+
+postman login webtechnicom api-key PMAK-63bcd6906585a24adf98e930-05e4d6f2c505af1dc8d8af78badcba86ed
+postman collection run ".idea/DIDWW API3 2022-05-10 (Latest).json" -e "25257408-60da24e4-ca52-48ce-8cf3-2afa7b9a1c55"
+postman api lint

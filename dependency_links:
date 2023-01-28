@@ -1,0 +1,46 @@
+PATCH /v3/voice_out_trunks/291ef437-8896-4834-b0c2-eefaa0bbde98 HTTP/1.1
+Host: api.didww.com
+Content-Type: application/vnd.api+json
+Accept: application/vnd.api+json
+Api-Key: [API token]
+
+{
+  "data": {
+    "id": "291ef437-8896-4834-b0c2-eefaa0bbde98",
+    "type": "voice_out_trunks",
+    "attributes": {
+      "name": "Outbound trunk 99",
+      "allowed_sip_ips": [
+        "192.168.1.1"
+      ],
+      "on_cli_mismatch_action": "send_original_cli",
+      "capacity_limit": 300,
+      "allow_any_did_as_cli": true,
+      "status": "blocked",
+      "threshold_amount": "1000.0",
+      "default_dst_action": "allow_all",
+      "dst_prefixes": [
+        "23",
+        "45"
+      ],
+      "media_encryption_mode": "disabled",
+      "allowed_rtp_ips": [
+        "192.168.1.1"
+      ],
+      "force_symmetric_rtp": true,
+      "callback_url": "http://10.201.10.1/test.php",
+      "rtp_ping": true
+    },
+    "relationships": {
+      "dids": {
+        "data": [
+          {
+            "type": "dids",
+            "id": "7a6c177d-a054-4c75-9b4c-b1596ed6fa25"
+          }
+        ]
+      }
+    }
+  }
+}
+curl -i -X PATCH https://api.didww.com/v3/voice_out_trunks/291ef437-8896-4834-b0c2-eefaa0bbde98 -H 'Accept: application/vnd.api+json' -H 'Api-Key: [API token]' -H 'Content-Type: application/vnd.api+json' --data-raw '{"data": {"attributes": {"allow_any_did_as_cli": true, "allowed_rtp_ips": ["192.168.1.1"], "allowed_sip_ips": ["192.168.1.1"], "callback_url": "http://10.201.10.1/test.php", "capacity_limit": 300, "default_dst_action": "allow_all", "dst_prefixes": ["23", "45"], "force_symmetric_rtp": true, "media_encryption_mode": "disabled", "name": "Outbound trunk 99", "on_cli_mismatch_action": "send_original_cli", "rtp_ping": true, "status": "blocked", "threshold_amount": "1000.0"}, "id": "291ef437-8896-4834-b0c2-eefaa0bbde98", "relationships": {"dids": {"data": [{"type": "dids", "id": "7a6c177d-a054-4c75-9b4c-b1596ed6fa25"}]}}, "type": "voice_out_trunks"}}'

@@ -1,0 +1,156 @@
+Warning
+Request Payload encoded as gzip so customer’s API should support gzip.
+
+CDR attributes description:
+
+type
+String
+CDR type. Voice Out CDR will be marked as outbound-cdr
+
+id
+String
+Unique CDR identifier in UUID format.
+
+attributes
+Hash
+Structure contains all CDR attributes. See description below.
+
+time_start
+Timestamp
+Start time when the initial INVITE is received.
+
+time_connect
+Timestamp
+Time after the successful handshake (200OK SIP).
+
+time_end
+Timestamp
+Time when the call was disconnected.
+
+duration
+Integer
+Call duration in seconds. For non-connected calls duration is 0.
+
+success
+Boolean
+Indicates that the call was successful.
+
+disconnect_code
+Integer
+DIDWW internal disconnect code.
+
+disconnect_reason
+String
+DIDWW internal disconnect reason.
+
+call_id
+String
+SIP Call-ID of the call leg between the customer equipment and DIDWW.
+
+source_ip
+String
+IP address of the call originator.
+
+source_port
+Integer
+Port of the call originator.
+
+source_protocol
+String
+SIP transport protocol used between customer and DIDWW platform. Possible values:
+
+UDP
+
+TCP
+
+TLS
+
+trunk_name
+String
+Outbound trunk friendly name.
+
+call_type
+String
+Call type. Possible values:
+
+INTERNATIONAL
+
+ORIGIN
+
+LOCAL
+
+trunk_name
+String
+Outgoing trunk name. Friendly name defined by customer during the trunk creation.
+
+src_name
+String
+Incoming caller name.
+
+original_src_number
+String
+Incoming Caller-ID.
+
+src_number
+String
+Incoming Caller-ID.
+
+dst_number
+String
+Called destination number.
+
+customer_vat
+Numeric
+Charged VAT amount for the call.
+
+rate
+Numeric
+Customer outbound call termination rate.
+
+initial_billing_interval
+Integer
+Initial billing interval for the outbound call termination.
+
+next_billing_interval
+Integer
+Next billing interval for the outbound call termination.
+
+billing_duration
+Integer
+Call duration rounded to the configured billing interval for the outbound call termination.
+
+price
+Numeric
+Customer accumulated amount for the outbound call termination.
+
+pop
+String
+Location of DIDWW equipment that processed call, see DIDWW Point of Presence. Possible values:
+
+NYC USA New-York
+
+LAC USA Los Angeles
+
+MIA USA Miami
+
+FRA Germany, Frankfurt
+
+SG - Singapore
+
+user_agent
+String
+User-Agent and Server headers values from the customer gateway.
+
+p_charge_info
+String
+P-Charge-Info header value is received from the call originator. Using this header, customers can add custom information to the DIDWW CDR for technical and billing purposes. See Service description for more details.
+
+Batching
+CDRs are delivered in batches, HTTP POST request can contain multiple CDRs. Maximum batch size is 1000. Destination API should be able to process multiple CDRs in same request.
+
+Error handling
+If the destination API responds with 2xx HTTP code, the streaming interface will consider all CDRs sent in that request as processed and they will be automatically deleted from the queue. In case of HTTP error (non 2xx response or timeout), CDRs will be stored in the queue and will re-attempt to deliver them after 3 seconds.
+
+Warning
+Queue length is limited to 10000 records per customer, extensive downtime or increased delay to process the requests can cause data loss on the customer’s endpoint. Therefore, CDR Streaming mechanism can not be used as the only way to receive CDRs. See the API documentation for other CDR fetching mechanisms.
+

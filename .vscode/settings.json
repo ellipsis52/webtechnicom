@@ -1,0 +1,15 @@
+{
+    "python.testing.pytestArgs": [
+        "didww_encrypt"
+    ],
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./didww_encrypt",
+        "-p",
+        "*test.py"
+    ],
+    "activestate.promptRuntimeCreation": false
+}

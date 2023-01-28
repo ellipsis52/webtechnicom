@@ -1,0 +1,217 @@
+Update Voice OUT Trunk
+Description
+
+Updates a Trunk.
+
+Request
+HTTP Method: PATCH
+
+URI Path: /v3/voice_out_trunks/{id}
+
+URI Query Parameters:
+
+Name
+
+Type
+
+Is Required?
+
+Description
+
+id
+
+string
+
+Yes
+
+Unique ID identifier of Trunk.
+
+Data Attributes:
+
+Name
+
+Type
+
+Nullable
+
+Is Required?
+
+Description
+
+name
+
+string
+
+No
+
+Yes
+
+The voice out trunk name.
+
+allowed_sip_ips
+
+Array of strings
+
+No
+
+Yes
+
+The allowed originating IPs. Array from 0 to 15 items: IP v4/v6 single or subnet.
+
+allowed_rtp_ips
+
+Array of strings
+
+Yes
+
+No
+
+The allowed RTP IPs. Array from 0 to 10 items: IP v4/v6 single or subnet.
+
+on_cli_mismatch_action
+
+string
+
+No
+
+Yes
+
+Possible values are:
+send_original_cli - the system will pass the FROM header value to the termination gateway.
+reject_call - the system will reject the call if the FROM header value does not match any of the allowed DIDs.
+
+capacity_limit
+
+integer
+
+Yes
+
+No
+
+The capacity limit of the voice out trunk. Allowed values from 0 to 32767.
+
+allow_any_did_as_cli
+
+boolean
+
+No
+
+No
+
+When set to True, passed than DIDs relationship can not be set to explicit DIDs. if DIDs relationship is omitted in payload already linked DIDs will be automatically unassigned.
+Default value is False.
+
+status
+
+string
+
+No
+
+No
+
+Can be either: Active or Blocked. If set to null, the default value is Active.
+
+threshold_amount
+
+string
+
+Yes
+
+No
+
+The outbound trunk 24 hour threshold limit. Can be from 0.0 to 100000.0.
+
+default_dst_action
+
+string
+
+No
+
+No
+
+Can be either: allow_all or reject_all.
+
+dst_prefixes
+
+string
+
+Yes
+
+No
+
+The allowed destination prefixes.
+
+media_encryption_mode
+
+string
+
+No
+
+No
+
+Media encryption mode.
+See RFC4568 about SRTP SDES, RFC5764 about SRTP DTLS, and RFC6189 about ZRTP for more details.
+Possible values:
+‘disabled’ - Disabled
+‘srtp_sdes’ - SRTP SDES
+‘srtp_dtls’ - SRTP DTLS
+‘zrtp’ - ZRTP
+
+callback_url
+
+string
+
+Yes
+
+No
+
+Can be null or valid HTTP(s) URL.
+
+Request Body Object Relationships:
+
+Title
+
+Type
+
+Description
+
+dids
+
+DIDs
+
+The DID numbers if allow_any_did_as_cli is set to false.
+
+PATCH /v3/voice_out_trunks/457bf47d-446d-41cd-91c3-dfbda7bf0753 HTTP/1.1
+Host: api.didww.com
+Content-Type: application/vnd.api+json
+Accept: application/vnd.api+json
+Api-Key: [API token]
+
+{
+  "data": {
+    "id": "457bf47d-446d-41cd-91c3-dfbda7bf0753",
+    "type": "voice_out_trunks",
+    "attributes": {
+      "name": "Outbound trunk 99",
+      "allowed_sip_ips": [
+        "192.168.1.1"
+      ],
+      "on_cli_mismatch_action": "send_original_cli",
+      "capacity_limit": 300,
+      "allow_any_did_as_cli": false,
+      "status": "blocked",
+      "threshold_amount": "1000.0",
+      "default_dst_action": "allow_all",
+      "dst_prefixes": [
+        "23",
+        "45"
+      ],
+      "media_encryption_mode": "disabled",
+      "allowed_rtp_ips": [
+        "192.168.1.1"
+      ],
+      "force_symmetric_rtp": true,
+      "rtp_ping": true
+    }
+  }
+}

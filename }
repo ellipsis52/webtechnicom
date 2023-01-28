@@ -1,0 +1,115 @@
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ pip install didww_encrypt
+Requirement already satisfied: didww_encrypt in ./venv/lib/python3.11/site-packages (1.0.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.11/site-packages (from didww_encrypt) (3.16.0)
+WARNING: You are using pip version 21.3.1; however, version 22.3.1 is available.
+You should consider upgrading via the '/Users/webtechnicom/Downloads/DIDWW-Winner-main/venv/bin/python -m pip install --upgrade pip' command.
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ from didww_encrypt import Encrypt, MODE_PRODUCTION
+from: can't read /var/mail/didww_encrypt
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ with open("doc.pdf", mode="rb") as f:
+bash: syntax error near unexpected token `('
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$     data = f.read()
+bash: syntax error near unexpected token `('
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ enc = Encrypt.new(MODE_PRODUCTION)
+bash: syntax error near unexpected token `('
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ enc_data = enc.encrypt(data)
+bash: syntax error near unexpected token `('
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ enc_filename = "doc.pdf.enc"
+bash: enc_filename: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ with open(enc_filename, mode="wb") as f:
+bash: syntax error near unexpected token `('
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$     f.write(enc_data)
+bash: syntax error near unexpected token `enc_data'
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ print(f"encrypted file saved: {enc_filename}")
+bash: syntax error near unexpected token `f"encrypted file saved: {enc_filename}"'
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ print(f"fingerprint: {enc.fingerprint}")pip install didww_encrypt
+bash: syntax error near unexpected token `f"fingerprint: {enc.fingerprint}"'
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ $load
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$  didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox
+usage: didww_encrypt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbox,production}] | -u [URI])
+didww_encrypt: error: argument -i/--input: can't open './doc.pdf': [Errno 2] No such file or directory: './doc.pdf'
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$  cat ./doc.pdf | didww_encrypt -m production > ./doc.pdf.enc
+cat: ./doc.pdf: No such file or directory
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$  python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m production
+usage: python -m didww_encrypt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbox,production}] | -u [URI])
+python -m didww_encrypt: error: argument -i/--input: can't open './doc.pdf': [Errno 2] No such file or directory: './doc.pdf'
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$  cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+cat: ./doc.pdf: No such file or directory
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$  didww_encrypt -f -mode sandbox
+usage: didww_encrypt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbox,production}] | -u [URI])
+didww_encrypt: error: argument -m/--mode: invalid choice: 'ode' (choose from 'sandbox', 'production')
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb
+bash: c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$  didww_encrypt -f -mode sandbox -o fingerprint.txt
+usage: didww_encrypt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbox,production}] | -u [URI])
+didww_encrypt: error: argument -m/--mode: invalid choice: 'ode' (choose from 'sandbox', 'production')
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ http_proxy="http://myproxy.example.com:1234" didww_encrypt -m sandbox
+input file or pipe data must be provided
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ pip install -r requirements.txt
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.11/site-packages (from -r requirements.txt (line 1)) (3.16.0)
+WARNING: You are using pip version 21.3.1; however, version 22.3.1 is available.
+You should consider upgrading via the '/Users/webtechnicom/Downloads/DIDWW-Winner-main/venv/bin/python -m pip install --upgrade pip' command.
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ pip install -r tests/requirements.txt
+Collecting flake8
+  Downloading flake8-6.0.0-py2.py3-none-any.whl (57 kB)
+     |████████████████████████████████| 57 kB 1.6 MB/s
+Collecting httpretty
+  Downloading httpretty-1.1.4.tar.gz (442 kB)
+     |████████████████████████████████| 442 kB 15.8 MB/s
+  Preparing metadata (setup.py) ... done
+Collecting black
+  Downloading black-22.12.0-py3-none-any.whl (167 kB)
+     |████████████████████████████████| 167 kB 967 kB/s
+Collecting coverage
+  Downloading coverage-7.0.3-cp311-cp311-macosx_10_9_x86_64.whl (196 kB)
+     |████████████████████████████████| 196 kB 1.5 MB/s
+Collecting mccabe<0.8.0,>=0.7.0
+  Using cached mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+Collecting pycodestyle<2.11.0,>=2.10.0
+  Downloading pycodestyle-2.10.0-py2.py3-none-any.whl (41 kB)
+     |████████████████████████████████| 41 kB 404 kB/s
+Collecting pyflakes<3.1.0,>=3.0.0
+  Downloading pyflakes-3.0.1-py2.py3-none-any.whl (62 kB)
+     |████████████████████████████████| 62 kB 2.3 MB/s
+Collecting mypy-extensions>=0.4.3
+  Downloading mypy_extensions-0.4.3-py2.py3-none-any.whl (4.5 kB)
+Collecting click>=8.0.0
+  Using cached click-8.1.3-py3-none-any.whl (96 kB)
+Collecting platformdirs>=2
+  Downloading platformdirs-2.6.2-py3-none-any.whl (14 kB)
+Collecting pathspec>=0.9.0
+  Downloading pathspec-0.10.3-py3-none-any.whl (29 kB)
+Building wheels for collected packages: httpretty
+  Building wheel for httpretty (setup.py) ... done
+  Created wheel for httpretty: filename=httpretty-1.1.4-py3-none-any.whl size=28808 sha256=047b1a6f1398353e9edec75b5a8922193a2d3024d316ce21f7633753785b66a5
+  Stored in directory: /Users/webtechnicom/Library/Caches/pip/wheels/ee/60/4d/22085e10d6776fed35a1f0e5b5505c7a3ccc370f7712d96751
+Successfully built httpretty
+Installing collected packages: pyflakes, pycodestyle, platformdirs, pathspec, mypy-extensions, mccabe, click, httpretty, flake8, coverage, black
+Successfully installed black-22.12.0 click-8.1.3 coverage-7.0.3 flake8-6.0.0 httpretty-1.1.4 mccabe-0.7.0 mypy-extensions-0.4.3 pathspec-0.10.3 platformdirs-2.6.2 pycodestyle-2.10.0 pyflakes-3.0.1
+WARNING: You are using pip version 21.3.1; however, version 22.3.1 is available.
+You should consider upgrading via the '/Users/webtechnicom/Downloads/DIDWW-Winner-main/venv/bin/python -m pip install --upgrade pip' command.
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ coverage run -m unittest -v
+test_initialize_custom_uri (tests.test_Encrypt.TestEncrypt.test_initialize_custom_uri) ... ok
+test_initialize_mode_production (tests.test_Encrypt.TestEncrypt.test_initialize_mode_production) ... ok
+test_initialize_mode_sandbox (tests.test_Encrypt.TestEncrypt.test_initialize_mode_sandbox) ... ok
+test_without_invalid_mode (tests.test_Encrypt.TestEncrypt.test_without_invalid_mode) ... ok
+test_without_mode_nor_uri (tests.test_Encrypt.TestEncrypt.test_without_mode_nor_uri) ... ok
+test_custom_uri (tests.test_command_line.TestCommandLine.test_custom_uri) ... ok
+test_fetch_failed (tests.test_command_line.TestCommandLine.test_fetch_failed) ... ok
+test_fingerprint (tests.test_command_line.TestCommandLine.test_fingerprint) ... ok
+test_input_file (tests.test_command_line.TestCommandLine.test_input_file) ... ok
+test_mode_production (tests.test_command_line.TestCommandLine.test_mode_production) ... ok
+test_mode_sandbox (tests.test_command_line.TestCommandLine.test_mode_sandbox) ... ok
+test_no_input (tests.test_command_line.TestCommandLine.test_no_input) ... ok
+test_output_file (tests.test_command_line.TestCommandLine.test_output_file) ... ok
+test_encrypt (tests.test_encryption.TestEncryption.test_encrypt) ... ok
+test_fingerprint (tests.test_fingerprint.TestFingerprint.test_fingerprint) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 383.101s
+
+OK
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$

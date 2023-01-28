@@ -1,0 +1,3228 @@
+test data
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Metadata-Version: 2.1
+bash: Metadata-Version:: command not found
+ 1.0.0
+Summary: File encryption for DIDWW API 3
+Home-page: https://github.com/didww/didww_encrypt_python
+Author: Denis Talakevich
+Author-email: senid231@gmail.com
+License: MIT
+Project-URL: Bug Tracker@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Name: didww-encrypt
+bash: Name:: command not found
+, https://github.com/didww/didww_encrypt_python/issues
+Keywords: DIDWW,encryption
+Platform: webtechn@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Version: 1.0.0
+bash: Version:: command not found
+ 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Summary: File encryption for DIDWW API 3
+
+Requires-Python: >=3.6
+Description-Content-Type: bash: Summary:: command not found
+text/markdown
+
+# DIDWW Encrypt Python 3 SDK
+
+[![github_actions](https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg)](@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Home-page: https://github.com/didww/didww_encrypt_python
+bash: Home-page:: command not foundhttps://github.com/didww/didww_encrypt_python/acti
+ons)
+[![codecov](https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg)](https://codecov.io/gh/didww/didww_encrypt_python)
+
+Thi@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Author: Denis Talakevich
+bash: Author:: command not found
+s is Python 3 module and CLI to encrypt file for DIDWW API 3.
+
+File encrypted with mode `sandbox` could be uploaded to `POST https://sandbox-api.didww@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Author-email: senid231@gmail.com
+bash: Author-email:: command not found.com/v3/encrypted_files`.
+
+File encrypted with mod
+e `production` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+
+see [DIDWW Documentation](https://doc.didww.com) for details.
+
+#@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ License: MIT
+bash: License:: command not found
+# Requirements
+
+Python `>=3.6`
+
+## Dependencies
+
+[PyCryptodomex](https://pypi.org/project/pycryptodomex/)
+
+## Install
+
+```shell
+pip install didww_encrypt
+```
+
+## Usage
+
+### Inside python
+```python
+from didww_encrypt import Encrypt, MODE_PRODUCTION
+
+
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Project-URL: Bug Tracker, https://github.com/didww/didww_encrypt_python/issues
+bash: Project-URL:: command not found
+with open("doc.pdf", mode="rb") as f:
+    data = f.read()
+    
+enc = Encrypt.new(MODE_PRODUCTION)
+enc_data = enc.encrypt(data)
+enc_filename = "doc.pdf.enc"
+with open(enc_filename, mode="wb") as f:
+   @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Keywords: DIDWW,encryption
+bash: Keywords:: command not found
+ f.write(enc_data)
+    
+print(f"encrypted file saved: {enc_filename}")
+print(f"fingerprint: {enc.fingerprint}")
+```
+
+### Shell
+
+```
+usage: didww_encry@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Platform: webtechnicom
+pt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbash: Platform:: command not found
+box,production}] | -u [URI])
+
+Encrypt file for DIDWW API 3
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i [INPUT], @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Classifier: Programming Language :: Python :: 3
+bash: Classifier:: command not found
+--input [INPUT]
+                        use input pipe when not passed
+  -o [OUTPUT], --output [OUTPUT]
+                        use output pipe when n@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Classifier: License :: OSI Approved :: MIT License
+ot passed
+  -f, --fingerprint     return fingerpribash: Classifier:: command not found
+nt for public keys
+  -m [{sandbox,production}], --mode [{sandbox,production}]
+                        which DIDWW server use for public keys fetching
+  -u [URI], --uri [URI]
+                        cu@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Classifier: Operating System :: OS Independent
+bash: Classifier:: command not found
+stom URI for public keys fetching
+```
+
+You can pass input and output files as params
+```shell
+$ didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Requires-Python: >=3.6
+
+```
+
+Or using pipe
+```shell
+$ cat ./doc.pdf | didbash: Requires-Python:: command not found
+ww_encrypt -m production > ./doc.pdf.enc
+```
+
+Also script could be run via `python -m`
+```shell
+$ python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.en@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Description-Content-Type: text/markdown
+bash: Description-Content-Type:: command not found
+c -m production
+$ cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+```
+
+To print fingerprint use `-f` option instead of `-i`
+```shel@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+l
+$ didww_encrypt -f -mode sandbox
+c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb
+```
+
+Or you can save it to a fi@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ # DIDWW Encrypt Python 3 SDK
+le
+```shell
+$ didww_encrypt -f -mode sandbox -o fingerprint.txt
+```
+
+**Keep in mind** that shell script returns fingerprint with newline which should @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+be omitted when send it to `/v3/encrypted_files`.
+
+## Additional information
+
+both shell script and module function `Encrypt.new` respects `http_proxy@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ [![github_actions](https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg)](https://github.com/didww/didww_encrypt_python/actions)
+bash: syntax error near unexpected token `https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg'
+l
+http_proxy="http://hosted-pbx.webtechnicom.net:123469" didww_encrypt -m sandbox
+```
+
+## Development
+
+### Install dependencies
+
+```shell
+pip install @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ [![codecov](https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg)](https://codecov.io/gh/didww/didww_encrypt_python)
+bash: syntax error near unexpected token `https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg'
+-r requirements.txt
+pip install -r tests/requirements.txt
+```
+
+### Run tests
+```shell
+python -m unittest -v
+```
+
+### Run tests with coverage
+```shell
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+coverage run -m unittest -v
+```
+
+### Lint with flake8
+```shell
+flake8 . --count --show-source --statistics
+```
+
+### Fix code format with Black
+```shel@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ This is Python 3 module and CLI to encrypt file for DIDWW API 3.
+l
+black .
+```
+
+
+bash: This: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ File encrypted with mode `sandbox` could be uploaded to `POST https://sandbox-api.didww.com/v3/encrypted_files`.
+bash: sandbox: command not found
+bash: POST: command not found
+bash: File: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ File encrypted with mode `production` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+bash: production: command not found
+bash: POST: command not found
+bash: File: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ see [DIDWW Documentation](https://doc.didww.com) for details.
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Requirements
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Python `>=3.6`
+bash: Python: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Dependencies
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ [PyCryptodomex](https://pypi.org/project/pycryptodomex/)
+bash: syntax error near unexpected token `https://pypi.org/project/pycryptodomex/'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Install
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ```shell
+> pip install didww_encrypt
+> ```
+bash: shell: command not found
+  WARNING: The script didww_encrypt is installed in '/usr/local/python/3.10.4/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+bash: Collecting: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Usage
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ### Inside python
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ```python
+> from didww_encrypt import Encrypt, MODE_PRODUCTION
+> 
+> 
+> with open("doc.pdf", mode="rb") as f:
+>     data = f.read()
+>     
+> enc = Encrypt.new(MODE_PRODUCTION)
+> enc_data = enc.encrypt(data)
+> enc_filename = "doc.pdf.enc"
+> with open(enc_filename, mode="wb") as f:
+>     f.write(enc_data)
+>     
+> print(f"encrypted file saved: {enc_filename}")
+> print(f"fingerprint: {enc.fingerprint}")
+> ```
+Python 3.10.4 (main, Nov  2 2022, 18:29:07) [GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> >>> >>> >>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> >>>   File "<stdin>", line 1
+    Encrypt file for DIDWW API 3
+            ^^^^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    optional arguments:
+             ^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    -h, --help            show this help message and exit
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -i [INPUT], --input [INPUT]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    use input pipe when not passed
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -o [OUTPUT], --output [OUTPUT]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    use output pipe when not passed
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -f, --fingerprint     return fingerprint for public keys
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -m [{sandbox,production}], --mode [{sandbox,production}]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    which DIDWW server use for public keys fetching
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -u [URI], --uri [URI]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    custom URI for public keys fetching
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    You can pass input and output files as params
+        ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Or using pipe
+       ^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ cat ./doc.pdf | didww_encrypt -m production > ./doc.pdf.enc
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Also script could be run via `python -m`
+         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m production
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    To print fingerprint use `-f` option instead of `-i`
+       ^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -f -mode sandbox
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb
+                                             ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Or you can save it to a file
+       ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -f -mode sandbox -o fingerprint.txt
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    **Keep in mind** that shell script returns fingerprint with newline which should be omitted when send it to `/v3/encrypted_files`.
+    ^^
+SyntaxError: invalid syntax
+>>> >>> >>> >>>   File "<stdin>", line 1
+    both shell script and module function `Encrypt.new` respects `http_proxy` env variable when fetching public keys.
+         ^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    http_proxy="http://hosted-pbx.webtechnicom.net:123469" didww_encrypt -m sandbox
+                                                           ^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r requirements.txt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r tests/requirements.txt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    python -m unittest -v
+              ^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    coverage run -m unittest -v
+             ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    flake8 . --count --show-source --statistics
+             ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    black .
+           ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> MANIFEST.in
+README.md
+setup.cfg
+setup.py
+didww_enc  File "<stdin>", line 1
+    MANIFEST.in
+             ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'README' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'setup' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'setup' is not defined
+>>> rypt/Encrypt.py
+didww_encrypt/__init__.py
+didww_enTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> crypt/__main__.py
+didww_encrypt/command_line.py
+diTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> dww_encrypt/encryption.py
+didww_encrypt/fetching.pTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> y
+didww_encrypt/fingerprint.py
+didww_encrypt.egg-iTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> nfo/PKG-INFO
+didww_encrypt.egg-info/SOURCES.txt
+diTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> dww_encrypt.egg-info/dependency_links.txt
+didww_enTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> crypt.egg-info/entry_points.txt
+didww_encrypt.egg-Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> info/not-zip-safe
+didww_encrypt.egg-info/requires.  File "<stdin>", line 1
+    didww_encrypt.egg-info/not-zip-safe
+                           ^^^
+SyntaxError: invalid syntax
+>>> txt
+didww_encrypt.egg-info/top_level.txtTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> name: Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f tests/requirements.txt ]; then pip install -r tests/requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --show-source --statistics
+    - name: Check code format with Black
+      run: |
+        # stop the build if psf/black found unformatted file
+        # https://github.com/psf/black
+        black . --check
+    - name: Test with unittest
+      run: |
+        python setup.py test
+    - name: Testing build and generate coverage report
+      run: |
+        coverage run -m unittest -v
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v1
+/home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/__init__.py
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/__init__.py
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/__main__.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/didww_encrypt/__main__.py", line 1, in <module>
+    from .command_line import main
+ImportError: attempted relative import with no known parent package
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/command_line.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/didww_encrypt/command_line.py", line 25, in <module>
+    from . import Encrypt, MODES
+ImportError: attempted relative import with no known parent package
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/Encrypt.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/didww_encrypt/Encrypt.py", line 1, in <module>
+    from didww_encrypt.fingerprint import calculate_fingerprint
+ModuleNotFoundError: No module named 'didww_encrypt'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/encryption.py
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/fetching.py
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/didww_encrypt/fingerprint.py
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/examples/upload_encrypted_file.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/examples/upload_encrypted_file.py", line 4, in <module>
+    from didww_encrypt import Encrypt, MODE_SANDBOX
+ModuleNotFoundError: No module named 'didww_encrypt'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/tests/__init__.py
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/tests/test_Encrypt.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/tests/test_Encrypt.py", line 4, in <module>
+    from tests import decrypt, read_fixture
+ModuleNotFoundError: No module named 'tests'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/tests/test_encryption.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/tests/test_encryption.py", line 2, in <module>
+    from tests import decrypt, generate_rsa_key
+ModuleNotFoundError: No module named 'tests'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/tests/test_fingerprint.py
+Traceback (most recent call last):
+  File "/workspaces/webtechnicom-stripe/tests/test_fingerprint.py", line 2, in <module>
+    from didww_encrypt import fingerprint
+ModuleNotFoundError: No module named 'didww_encrypt'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ /home/codespace/.python/current/bin/python3 /workspaces/webtechnicom-stripe/setup.py
+usage: setup.py [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
+   or: setup.py --help [cmd1 cmd2 ...]
+   or: setup.py --help-commands
+   or: setup.py cmd --help
+
+error: no commands supplied
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Metadata-Version: 2.1
+bash: Metadata-Version:: command not found
+ 1.0.0
+Summary: File encryption for DIDWW API 3
+Home-page: https://github.com/didww/didww_encrypt_python
+Author: Denis Talakevich
+Author-email: senid231@gmail.com
+License: MIT
+Project-URL: Bug Tracker@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Name: didww-encrypt
+bash: Name:: command not found
+, https://github.com/didww/didww_encrypt_python/issues
+Keywords: DIDWW,encryption
+Platform: webtechn@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Version: 1.0.0
+bash: Version:: command not found
+ 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Summary: File encryption for DIDWW API 3
+
+Requires-Python: >=3.6
+Description-Content-Type: bash: Summary:: command not found
+text/markdown
+
+# DIDWW Encrypt Python 3 SDK
+
+[![github_actions](https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg)](@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Home-page: https://github.com/didww/didww_encrypt_python
+bash: Home-page:: command not foundhttps://github.com/didww/didww_encrypt_python/acti
+ons)
+[![codecov](https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg)](https://codecov.io/gh/didww/didww_encrypt_python)
+
+Thi@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Author: Denis Talakevich
+bash: Author:: command not found
+s is Python 3 module and CLI to encrypt file for DIDWW API 3.
+
+File encrypted with mode `sandbox` could be uploaded to `POST https://sandbox-api.didww@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Author-email: senid231@gmail.com
+bash: Author-email:: command not found.com/v3/encrypted_files`.
+
+File encrypted with mod
+e `production` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+
+see [DIDWW Documentation](https://doc.didww.com) for details.
+
+#@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ License: MIT
+bash: License:: command not found
+# Requirements
+
+Python `>=3.6`
+
+## Dependencies
+
+[PyCryptodomex](https://pypi.org/project/pycryptodomex/)
+
+## Install
+
+```shell
+pip install didww_encrypt
+```
+
+## Usage
+
+### Inside python
+```python
+from didww_encrypt import Encrypt, MODE_PRODUCTION
+
+
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Project-URL: Bug Tracker, https://github.com/didww/didww_encrypt_python/issues
+bash: Project-URL:: command not found
+with open("doc.pdf", mode="rb") as f:
+    data = f.read()
+    
+enc = Encrypt.new(MODE_PRODUCTION)
+enc_data = enc.encrypt(data)
+enc_filename = "doc.pdf.enc"
+with open(enc_filename, mode="wb") as f:
+   @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Keywords: DIDWW,encryption
+bash: Keywords:: command not found
+ f.write(enc_data)
+    
+print(f"encrypted file saved: {enc_filename}")
+print(f"fingerprint: {enc.fingerprint}")
+```
+
+### Shell
+
+```
+usage: didww_encry@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Platform: webtechnicom
+pt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbash: Platform:: command not found
+box,production}] | -u [URI])
+
+Encrypt file for DIDWW API 3
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i [INPUT], @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Classifier: Programming Language :: Python :: 3
+bash: Classifier:: command not found
+--input [INPUT]
+                        use input pipe when not passed
+  -o [OUTPUT], --output [OUTPUT]
+                        use output pipe when n@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Classifier: License :: OSI Approved :: MIT License
+ot passed
+  -f, --fingerprint     return fingerpribash: Classifier:: command not found
+nt for public keys
+  -m [{sandbox,production}], --mode [{sandbox,production}]
+                        which DIDWW server use for public keys fetching
+  -u [URI], --uri [URI]
+                        cu@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Classifier: Operating System :: OS Independent
+bash: Classifier:: command not found
+stom URI for public keys fetching
+```
+
+You can pass input and output files as params
+```shell
+$ didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Requires-Python: >=3.6
+
+```
+
+Or using pipe
+```shell
+$ cat ./doc.pdf | didbash: Requires-Python:: command not found
+ww_encrypt -m production > ./doc.pdf.enc
+```
+
+Also script could be run via `python -m`
+```shell
+$ python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.en@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Description-Content-Type: text/markdown
+bash: Description-Content-Type:: command not found
+c -m production
+$ cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+```
+
+To print fingerprint use `-f` option instead of `-i`
+```shel@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+l
+$ didww_encrypt -f -mode sandbox
+c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb
+```
+
+Or you can save it to a fi@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ # DIDWW Encrypt Python 3 SDK
+le
+```shell
+$ didww_encrypt -f -mode sandbox -o fingerprint.txt
+```
+
+**Keep in mind** that shell script returns fingerprint with newline which should @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+be omitted when send it to `/v3/encrypted_files`.
+
+## Additional information
+
+both shell script and module function `Encrypt.new` respects `http_proxy@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ [![github_actions](https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg)](https://github.com/didww/didww_encrypt_python/actions)
+bash: syntax error near unexpected token `https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg'
+l
+http_proxy="http://hosted-pbx.webtechnicom.net:123469" didww_encrypt -m sandbox
+```
+
+## Development
+
+### Install dependencies
+
+```shell
+pip install @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ [![codecov](https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg)](https://codecov.io/gh/didww/didww_encrypt_python)
+bash: syntax error near unexpected token `https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg'
+-r requirements.txt
+pip install -r tests/requirements.txt
+```
+
+### Run tests
+```shell
+python -m unittest -v
+```
+
+### Run tests with coverage
+```shell
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+coverage run -m unittest -v
+```
+
+### Lint with flake8
+```shell
+flake8 . --count --show-source --statistics
+```
+
+### Fix code format with Black
+```shel@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ This is Python 3 module and CLI to encrypt file for DIDWW API 3.
+l
+black .
+```
+
+
+bash: This: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ File encrypted with mode `sandbox` could be uploaded to `POST https://sandbox-api.didww.com/v3/encrypted_files`.
+bash: sandbox: command not found
+bash: POST: command not found
+bash: File: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ File encrypted with mode `production` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+bash: production: command not found
+bash: POST: command not found
+bash: File: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ see [DIDWW Documentation](https://doc.didww.com) for details.
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Requirements
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ Python `>=3.6`
+bash: Python: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Dependencies
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ [PyCryptodomex](https://pypi.org/project/pycryptodomex/)
+bash: syntax error near unexpected token `https://pypi.org/project/pycryptodomex/'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Install
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ```shell
+> pip install didww_encrypt
+> ```
+bash: shell: command not found
+  WARNING: The script didww_encrypt is installed in '/usr/local/python/3.10.4/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+bash: Collecting: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ## Usage
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ### Inside python
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ ```python
+> from didww_encrypt import Encrypt, MODE_PRODUCTION
+> 
+> 
+> with open("doc.pdf", mode="rb") as f:
+>     data = f.read()
+>     
+> enc = Encrypt.new(MODE_PRODUCTION)
+> enc_data = enc.encrypt(data)
+> enc_filename = "doc.pdf.enc"
+> with open(enc_filename, mode="wb") as f:
+>     f.write(enc_data)
+>     
+> print(f"encrypted file saved: {enc_filename}")
+> print(f"fingerprint: {enc.fingerprint}")
+> ```
+Python 3.10.4 (main, Nov  2 2022, 18:29:07) [GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> >>> >>> >>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> >>>   File "<stdin>", line 1
+    Encrypt file for DIDWW API 3
+            ^^^^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    optional arguments:
+             ^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    -h, --help            show this help message and exit
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -i [INPUT], --input [INPUT]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    use input pipe when not passed
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -o [OUTPUT], --output [OUTPUT]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    use output pipe when not passed
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -f, --fingerprint     return fingerprint for public keys
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -m [{sandbox,production}], --mode [{sandbox,production}]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    which DIDWW server use for public keys fetching
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -u [URI], --uri [URI]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    custom URI for public keys fetching
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    You can pass input and output files as params
+        ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Or using pipe
+       ^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ cat ./doc.pdf | didww_encrypt -m production > ./doc.pdf.enc
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Also script could be run via `python -m`
+         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m production
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    To print fingerprint use `-f` option instead of `-i`
+       ^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -f -mode sandbox
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb
+                                             ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Or you can save it to a file
+       ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -f -mode sandbox -o fingerprint.txt
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    **Keep in mind** that shell script returns fingerprint with newline which should be omitted when send it to `/v3/encrypted_files`.
+    ^^
+SyntaxError: invalid syntax
+>>> >>> >>> >>>   File "<stdin>", line 1
+    both shell script and module function `Encrypt.new` respects `http_proxy` env variable when fetching public keys.
+         ^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    http_proxy="http://hosted-pbx.webtechnicom.net:123469" didww_encrypt -m sandbox
+                                                           ^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r requirements.txt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r tests/requirements.txt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    python -m unittest -v
+              ^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    coverage run -m unittest -v
+             ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    flake8 . --count --show-source --statistics
+             ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    black .
+           ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> MANIFEST.in
+README.md
+setup.cfg
+setup.py
+didww_enc  File "<stdin>", line 1
+    MANIFEST.in
+             ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'README' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'setup' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'setup' is not defined
+>>> rypt/Encrypt.py
+didww_encrypt/__init__.py
+didww_enTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> crypt/__main__.py
+didww_encrypt/command_line.py
+diTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> dww_encrypt/encryption.py
+didww_encrypt/fetching.pTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> y
+didww_encrypt/fingerprint.py
+didww_encrypt.egg-iTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> nfo/PKG-INFO
+didww_encrypt.egg-info/SOURCES.txt
+diTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> dww_encrypt.egg-info/dependency_links.txt
+didww_enTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> crypt.egg-info/entry_points.txt
+didww_encrypt.egg-Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> info/not-zip-safe
+didww_encrypt.egg-info/requires.  File "<stdin>", line 1
+    didww_encrypt.egg-info/not-zip-safe
+                           ^^^
+SyntaxError: invalid syntax
+>>> txt
+didww_encrypt.egg-info/top_level.txtTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>> 
+SyntaxError: invalid syntax
+>>> ww_encrypt' is not defined
+>>> info/not-z  File "<stdin>", line 1
+    >>> >>> >>> >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>> ip-safe
+didww_encrypt.egg-info/requires.  File "<stdin>", line 1
+    didww_encrypt.egg-info/not-zip-safe
+               File "<stdin>", line 1
+    both shell script and module function `Encrypt.new` respects `http_proxy` env variable when fetching public keys.
+IndentationError: unexpected indent
+>>>               ^  File "<stdin>", line 1
+    ^^^^^
+IndentationError: unexpected indent
+>>> ^^
+SyntaxError: invalid synt  File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>> ax
+>>> txt
+didww_encrypt.egg-  File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>> info/top_level.txtTraceback (most recent call last):
+  File "<stdin>", line 1, in <m  File "<stdin>", line 1
+    http_proxy="http://hosted-pbx.webtechnicom.net:123469" didww_encrypt -m sandbox
+IndentationError: unexpected indent
+>>> odule>
+NameError: name 'didww_encrypt' is not defined
+>>>   File "<stdin>", line 1
+    ^^^^^^^^^^^^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> >>> >>> >>> >>> >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r requirements.txt
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^^^^^^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r tests/requirements.txt
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^^^^^^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> >>> >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    python -m unittest -v
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^^^^^^^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> >>> >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    coverage run -m unittest -v
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> >>> >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    flake8 . --count --show-source --statistics
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> >>> >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    black .
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>>   File "<stdin>", line 1
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> >>> >>> MANIFEST.in
+    ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'README' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'setup' is not defined
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'setup' is not defined
+>>>   File "<stdin>", line 1
+    didww_enc  File "<stdin>", line 1
+               ^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    MANIFEST.in
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'README' is not defined
+                    ^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'setup' is not defined
+                    ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'setup' is not defined
+                    ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> rypt/Encrypt.py
+    ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>>   File "<stdin>", line 1
+    didww_enTraceback (most recent call last):
+                       ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> crypt/__main__.py
+    ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>>   File "<stdin>", line 1
+    diTraceback (most recent call last):
+                 ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> dww_encrypt/encryption.py
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    didww_encrypt/fetching.pTraceback (most recent call last):
+                                       ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> y
+    ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>>   File "<stdin>", line 1
+    didww_encrypt.egg-iTraceback (most recent call last):
+                                  ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> nfo/PKG-INFO
+    ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww_encrypt' is not defined
+>>>   File "<stdin>", line 1
+    diTraceback (most recent call last):
+                 ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> Traceback (most recent call last):
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> dww_encrypt.egg-info/dependency_links.txt
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    didww_enTraceback (most recent call last):
+                       ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> crypt.egg-info/entry_points.txt
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    didww_encrypt.egg-Traceback (most recent call last):
+                                 ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> info/not-zip-safe
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    didww_encrypt.egg-info/requires.  File "<stdin>", line 1
+                                           ^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    didww_encrypt.egg-info/not-zip-safe
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ^^^
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    SyntaxError: invalid syntax
+                         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    >>> txt
+    ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    didww_encrypt.egg-info/top_level.txtTraceback (most recent call last):
+                                                   ^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>>   File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    NameError: name 'didww_encrypt' is not defined
+                    ^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>> Metadata-Version: 2.1
+Name: didww-encrypt
+Version:  File "<stdin>", line 1
+    >>> Metadata-Version: 2.1
+    ^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'didww' is not defined
+>>>  1.0.0
+Summary: File encryption for DIDWW API 3
+Ho  File "<stdin>", line 1
+    Version: 1.0.0
+                ^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    Summary: File encryption for DIDWW API 3
+                  ^^^^^^^^^^
+SyntaxError: invalid syntax
+>>> me-page: https://github.com/didww/didww_encrypt_python
+Author: Denis Talakevich
+Author-email: senid2  File "<stdin>", line 1
+    Home-page: https://github.com/didww/didww_encrypt_python
+    ^^^^^^^^^
+SyntaxError: illegal target for annotation
+>>>   File "<stdin>", line 1
+    Author: Denis Talakevich
+                  ^^^^^^^^^^
+SyntaxError: invalid syntax
+>>> 31@gmail.com
+License: MIT
+Project-URL: Bug Tracker  File "<stdin>", line 1
+    Author-email: senid231@gmail.com
+    ^^^^^^^^^^^^
+SyntaxError: illegal target for annotation
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'MIT' is not defined
+>>> , https://github.com/didww/didww_encrypt_python/issues
+Keywords: DIDWW,encryption
+Platform: UNKNOWN
+  File "<stdin>", line 1
+    Project-URL: Bug Tracker, https://github.com/didww/didww_encrypt_python/issues
+    ^^^^^^^^^^^
+SyntaxError: illegal target for annotation
+>>>   File "<stdin>", line 1
+    Keywords: DIDWW,encryption
+                   ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'UNKNOWN' is not defined
+>>> Classifier: Programming Language :: Python :: 3
+Cl  File "<stdin>", line 1
+    Classifier: Programming Language :: Python :: 3
+                            ^^^^^^^^
+SyntaxError: invalid syntax
+>>> assifier: License :: OSI Approved :: MIT License
+C  File "<stdin>", line 1
+    Classifier: License :: OSI Approved :: MIT License
+                        ^
+SyntaxError: invalid syntax
+>>> lassifier: Operating System :: OS Independent
+Requ  File "<stdin>", line 1
+    Classifier: Operating System :: OS Independent
+                          ^^^^^^
+SyntaxError: invalid syntax
+>>> ires-Python: >=3.6
+Description-Content-Type: text/  File "<stdin>", line 1
+    Requires-Python: >=3.6
+                   ^
+SyntaxError: invalid syntax
+>>> markdown
+
+# DIDWW Encrypt Python 3 SDK
+
+[![github_  File "<stdin>", line 1
+    Description-Content-Type: text/markdown
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: illegal target for annotation
+>>> >>> >>> >>> actions](https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg)](https://github.com/didww/didww_encrypt_python/actions)
+  File "<stdin>", line 1
+    [![github_actions](https://github.com/didww/didww_encrypt_python/actions/workflows/tests.yml/badge.svg)](https://github.com/didww/didww_encrypt_python/actions)
+     ^
+SyntaxError: invalid syntax
+>>> [![codecov](https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg)](https://codecov.io/gh/didww/didww_encrypt_python)
+
+This is   File "<stdin>", line 1
+    [![codecov](https://codecov.io/gh/didww/didww_encrypt_python/branch/main/graph/badge.svg)](https://codecov.io/gh/didww/didww_encrypt_python)
+     ^
+SyntaxError: invalid syntax
+>>> >>> Python 3 module and CLI to encrypt file for DIDWW API 3.
+
+File encrypted with mode `sandbox` could b  File "<stdin>", line 1
+    This is Python 3 module and CLI to encrypt file for DIDWW API 3.
+                   ^
+SyntaxError: invalid syntax
+>>> >>> e uploaded to `POST https://sandbox-api.didww.com/v3/encrypted_files`.
+
+File encrypted with mode `pr  File "<stdin>", line 1
+    File encrypted with mode `sandbox` could be uploaded to `POST https://sandbox-api.didww.com/v3/encrypted_files`.
+         ^^^^^^^^^
+SyntaxError: invalid syntax
+>>> >>> oduction` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+
+see [DIDWW Document  File "<stdin>", line 1
+    File encrypted with mode `production` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+         ^^^^^^^^^
+SyntaxError: invalid syntax
+>>> >>> ation](https://doc.didww.com) for details.
+
+## Req  File "<stdin>", line 1
+    see [DIDWW Documentation](https://doc.didww.com) for details.
+         ^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>> >>> uirements
+
+Python `>=3.6`
+
+## Dependencies
+
+[PyCry>>> >>>   File "<stdin>", line 1
+    Python `>=3.6`
+           ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>> ptodomex](https://pypi.org/project/pycryptodomex/)
+
+## Install
+
+```shell
+pip install didww_encrypt
+`  File "<stdin>", line 1
+    [PyCryptodomex](https://pypi.org/project/pycryptodomex/)
+                         ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install didww_encrypt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>> ``
+
+## Usage
+
+### Inside python
+```python
+from did  File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>> >>>   File "<stdin>", line 1
+    ```python
+    ^
+SyntaxError: invalid syntax
+>>> ww_encrypt import Encrypt, MODE_PRODUCTION
+
+
+with open("doc.pdf", mode="rb") as f:
+    data = f.read()
+    
+enc = Encrypt.new(MODE_PRODUCTION)
+enc_data = enc.encrypt(data)
+enc_filename = "doc.pdf.enc"
+with open(enc_filename, mode="wb") as f:
+    f.write(enc_data)
+    
+print(f"encrypted file saved: {enc_filename}")
+print(f"fingerprint: {enc.fingerprint}")
+```
+
+### Shell
+
+```
+usage: didww_encrypt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbox,production}] | -u [URI])
+
+Encrypt file for DIDWW API 3
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i [INPUT], --input [INPUT]
+                        use input pipe when not passed
+  -o [OUTPUT], --output [OUTPUT]
+                        use output pipe when not passed
+  -f, --fingerprint     return fingerprint for public keys
+  -m [{sandbox,production}], --mode [{sandbox,production}]
+                        which DIDWW server use for public keys fetching
+  -u [URI], --uri [URI]
+                        custom URI for public keys fetching
+```
+
+You can pass input and output files as params
+```shell
+$ didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox
+```
+
+Or using pipe
+```shell
+$ cat ./doc.pdf | didww_encrypt -m production > ./doc.pdf.enc
+```
+
+Also script could be run via `python -m`
+```shell
+$ python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m production
+$ cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+```
+
+To print fingerprint use `-f` option instead of `-i`
+```shell
+$ didww_encrypt -f -mode sandbox
+c74684d7863639169c21>>> >>> >>> ... ... ...   File "<stdin>", line 4
+    enc = Encrypt.new(MODE_PRODUCTION)
+    ^^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'enc' is not defined
+>>> >>> ... ... ...   File "<stdin>", line 4
+    print(f"encrypted file saved: {enc_filename}")
+    ^^^^^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'enc' is not defined
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e7NameError: name 'didww_encrypt' is not defined
+>>> >>>   File "<stdin>", line 1
+    Encrypt file for DIDWW API 3
+            ^^^^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    optional arguments:
+             ^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    -h, --help            show this help message and exit
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -i [INPUT], --input [INPUT]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    use input pipe when not passed
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -o [OUTPUT], --output [OUTPUT]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    use output pipe when not passed
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -f, --fingerprint     return fingerprint for public keys
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -m [{sandbox,production}], --mode [{sandbox,production}]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    which DIDWW server use for public keys fetching
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    -u [URI], --uri [URI]
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    custom URI for public keys fetching
+IndentationError: unexpected indent
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    You can pass input and output files as params
+        ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m sandbox
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Or using pipe
+       ^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ cat ./doc.pdf | didww_encrypt -m production > ./doc.pdf.enc
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Also script could be run via `python -m`
+         ^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ python -m didww_encrypt -i ./doc.pdf -o ./doc.pdf.enc -m production
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ cat ./doc.pdf | python -m didww_encrypt -m sandbox > ./doc.pdf.enc
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    To print fingerprint use `-f` option instead of `-i`
+       ^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    $ didww_encrypt -f -mode sandbox
+    ^
+SyntaxError: invalid syntax
+>>> 4712037aea7eb
+```
+
+Or you can save it to a file
+``  File "<stdin>", line 1
+    c74684d7863639169c21c4d04747f8d6fa05cfe3:::7c56fd5d2e1f2ada18765d936e74712037aea7eb
+                                             ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    Or you can save it to a file
+       ^^^
+SyntaxError: invalid syntax
+>>> `shell
+$ didww_encrypt -f -mode sandbox -o fingerp  File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>> rint.txt
+```
+
+**Keep in mind** that shell script r  File "<stdin>", line 1
+    $ didww_encrypt -f -mode sandbox -o fingerprint.txt
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> eturns fingerprint with newline which should be omitted when send it to `/v3/encrypted_files`.
+
+## A  File "<stdin>", line 1
+    **Keep in mind** that shell script returns fingerprint with newline which should be omitted when send it to `/v3/encrypted_files`.
+    ^^
+SyntaxError: invalid syntax
+>>> >>> dditional information
+
+both shell script and modul>>> >>> e function `Encrypt.new` respects `http_proxy` env variable when fetching public keys.
+
+```shell
+htt  File "<stdin>", line 1
+    both shell script and module function `Encrypt.new` respects `http_proxy` env variable when fetching public keys.
+         ^^^^^
+SyntaxError: invalid syntax
+>>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>> p_proxy="http://myproxy.example.com:1234" didww_encrypt -m sandbox
+```
+
+## Development
+
+### Install   File "<stdin>", line 1
+    http_proxy="http://myproxy.example.com:1234" didww_encrypt -m sandbox
+                                                 ^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>> >>> dependencies
+
+```shell
+pip install -r requirements>>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>> .txt
+pip install -r tests/requirements.txt
+```
+
+##  File "<stdin>", line 1
+    pip install -r requirements.txt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    pip install -r tests/requirements.txt
+        ^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> # Run tests
+```shell
+python -m unittest -v
+```
+
+##>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    python -m unittest -v
+              ^^^^^^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> # Run tests with coverage
+```shell
+coverage run -m>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>  unittest -v
+```
+
+### Lint with flake8
+```shell
+fl  File "<stdin>", line 1
+    coverage run -m unittest -v
+             ^^^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> >>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>> ake8 . --count --show-source --statistics
+```
+
+###  File "<stdin>", line 1
+    flake8 . --count --show-source --statistics
+             ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>>  Fix code format with Black
+```shell
+black .
+```
+
+>>>   File "<stdin>", line 1
+    ```shell
+    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    black .
+           ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1
+    ```
+    ^
+SyntaxError: invalid syntax
+>>> >>> 
+>>> @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ {
+>     // See https://go.microsoft.com/fwlink/?LinkId=733558
+>     // for the documentation about the tasks.json format
+>     "version": "2.0.0",
+>     "tasks": [
+>         {
+>             "label": "build",
+>             "type": "shell",
+>             "command": "msbuild",
+>             "args": [
+>                 // Ask msbuild to generate full paths for file names.
+>                 "/property:GenerateFullPaths=true",
+>                 "/t:build",
+>                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+>                 "/consoleloggerparameters:NoSummary"
+>             ],
+>             "group": "build",
+>             "presentation": {
+>                 // Reveal the output only if unrecognized errors occur.
+>                 "reveal": "silent"
+>             },
+>             // Use the standard MS compiler pattern to detect errors, warnings and infos
+>             "problemMatcher": "$msCompile"
+>         }
+>     ]
+> }{
+>   "private_key_a": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+>   "private_key_b": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n"
+> }
+bash: //: Is a directory
+bash: //: Is a directory
+bash: version:: command not found
+bash: tasks:: command not found
+bash: label:: command not found
+bash: type:: command not found
+bash: command:: command not found
+bash: args:: command not found
+bash: //: Is a directory
+bash: /property:GenerateFullPaths=true,: No such file or directory
+bash: /t:build,: No such file or directory
+bash: //: Is a directory
+bash: /consoleloggerparameters:NoSummary: No such file or directory
+bash: ],: command not found
+bash: group:: command not found
+bash: presentation:: command not found
+bash: //: Is a directory
+bash: reveal:: command not found
+bash: },: command not found
+bash: //: Is a directory
+bash: problemMatcher:: command not found
+bash: ]: command not found
+bash: }{: command not found
+bash: private_key_a:: command not found
+bash: private_key_b:: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ {
+>   "data": [
+>     {
+>       "id": "dcf2bfcb-a1d0-3b58-bbf0-3ec22a510ba8",
+>       "type": "public_keys",
+>       "attributes": {
+>         "key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0eHGTVjy2s+uOfFteMoB\nT6TXa0Ra20weFoA/dQB2SsCvZ2zAOJqDuqbjFPdcRPp0TwR0rmDDHaLzV/d8EwF2\nXiX9+9lwEGivn4PCz0A49gelNthD2dFR/TxyiVVdRsiaPeGJKVZTkYO3FhCKBpXe\nL2h1t+yhIQGGYZjh/fGgahJf2PKzDapHO4p8MZK8KCUBIN5z20cYblRyt39gdHul\nsqGvERDUwYdgiEAFv5Y9yyVFUeMmeiswImLj8yHnVdwc2+5jEtWEeGzkZ0LNQCby\nnynlGwzkDXcQ98Pm00XDcvPwPk91dBvZvhA/G2n2zXp8WA+MLOkWIi015Lqy4doa\n807DYfJW+600c1P0YaOI/pgGO9dGllpFGcZBxoNN5ZMUUOjTmrXYUNYTGSZh93gd\nlGP3rlhvAlui17CUW2pLpl4CaSUDJWXQZyJH/ILZ+HMVgOMsc7eyZDLWyWWaNlJg\nEKSVNF3A8zx8oCtu+LjNPTqaiRvc3BI/ISRvb6r99v5oozCVQ/QIT24AxMLdmy01\nxOhXuDq48uoUTWssquuOnfFdF1WaK3c+AlaomX39re/rj4pvIB0ZlzuVN+LGG5WK\nYb6jCitvl8lnw9yTBZKZeU1+IFBvWgN72o4B+Y/qjZJ5N0pCK+ZSrIeLo8Pse/S6\nQIULNIKq3VuvLgliDcsOzIMCAwEAAQ==\n-----END PUBLIC KEY-----\n"
+>       }
+>     },
+>     {
+>       "id": "f40e1176-a4ff-36e6-b2ed-c2c2d18097a3",
+>       "type": "public_keys",
+>       "attributes": {
+>         "key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA9L57/eAXG5ILm1CKjDpz\nUqqEOq45OyIGXr4lYPPL090C8ulDHkqd8I4Zn1k0ZVLL1SC/mtWaE4+k5jrrQTQN\n3pFVDraUsI+ugvtyCwH0IViW0UaASkT26BQwdzN9/iGJACoL1pAOzQaEpBW9LtLB\nkgdNYHKZD++RD0gskbkhuaBM5yLx6sK2vES49GhCCog/qGkq9ogZIuXN9UMZpqgv\ntF9sBNLixGNxvsz7svxlaPFKim1eetVgWa53KTuypUJcnNWFJdft4NhmOabHfc4M\n3IyCtkrkkRmmoaYKr3ZK2fCYIRaUxyEv+YWM3ISV1ZkEEqlRtH2dybOotkxkJpOt\n3AKMk86FXrcgMmspf34wN8uFXVrtZht6XkbWWwjlG+I48V1SPM7SK9BrnDQNgoJe\nd5LhjyK4dNTJo+XM2C65iwKDc5OzQX+VS9mS5uSKzn9rDOkpjjMLqWxDdmK4X7uZ\nZMkFtDcuf0vYKuMcOQ4w1NH+FcFO1XPtKftIiLLY0SafUIqGEbt1bf0A/whLpTNE\nrc1WI1V8+DsYhqZqWDINbqNXS1/iRahiXPanmszR6npkxqdvtMsdM5FJJIz7x9a/\noPNqkDzHWZPwpZCdZO4mijx2CIcMqh8Y2NXlMI/FDlO/qUgmFz1gf9Fm41HLmFzS\n5LG5KbxmgbPJlM3Q8s6TAl0CAwEAAQ==\n-----END PUBLIC KEY-----\n"
+>       }
+>     }
+bash: data:: command not found
+bash: id:: command not found
+bash: type:: command not found
+bash: attributes:: command not found
+bash: key:: command not found
+bash: },: command not found
+bash: id:: command not found
+bash: type:: command not found
+bash: attributes:: command not found
+bash: key:: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $   ]
+bash: ]: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ }
+bash: syntax error near unexpected token `}'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ {
+>     // See https://go.microsoft.com/fwlink/?LinkId=733558
+>     // for the documentation about the tasks.json format
+>     "version": "2.0.0",
+>     "tasks": [
+>         {
+>             "label": "build",
+>             "type": "shell",
+>             "command": "msbuild",
+>             "args": [
+>                 // Ask msbuild to generate full paths for file names.
+>                 "/property:GenerateFullPaths=true",
+>                 "/t:build",
+>                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+>                 "/consoleloggerparameters:NoSummary"
+>             ],
+>             "group": "build",
+>             "presentation": {
+>                 // Reveal the output only if unrecognized errors occur.
+>                 "reveal": "silent"
+>             },
+>             // Use the standard MS compiler pattern to detect errors, warnings and infos
+>             "problemMatcher": "$msCompile"
+>         }
+>     ]
+> }{
+>   "private_key_a": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+>   "private_key_b": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n"
+> }
+bash: //: Is a directory
+bash: //: Is a directory
+bash: version:: command not found
+bash: tasks:: command not found
+bash: label:: command not found
+bash: type:: command not found
+bash: command:: command not found
+bash: args:: command not found
+bash: //: Is a directory
+bash: /property:GenerateFullPaths=true,: No such file or directory
+bash: /t:build,: No such file or directory
+bash: //: Is a directory
+bash: /consoleloggerparameters:NoSummary: No such file or directory
+bash: ],: command not found
+bash: group:: command not found
+bash: presentation:: command not found
+bash: //: Is a directory
+bash: reveal:: command not found
+bash: },: command not found
+bash: //: Is a directory
+bash: problemMatcher:: command not found
+bash: ]: command not found
+bash: }{: command not found
+bash: private_key_a:: command not found
+bash: private_key_b:: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ {
+>   "data": [
+>     {
+>       "id": "dcf2bfcb-a1d0-3b58-bbf0-3ec22a510ba8",
+>       "type": "public_keys",
+>       "attributes": {
+>         "key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0eHGTVjy2s+uOfFteMoB\nT6TXa0Ra20weFoA/dQB2SsCvZ2zAOJqDuqbjFPdcRPp0TwR0rmDDHaLzV/d8EwF2\nXiX9+9lwEGivn4PCz0A49gelNthD2dFR/TxyiVVdRsiaPeGJKVZTkYO3FhCKBpXe\nL2h1t+yhIQGGYZjh/fGgahJf2PKzDapHO4p8MZK8KCUBIN5z20cYblRyt39gdHul\nsqGvERDUwYdgiEAFv5Y9yyVFUeMmeiswImLj8yHnVdwc2+5jEtWEeGzkZ0LNQCby\nnynlGwzkDXcQ98Pm00XDcvPwPk91dBvZvhA/G2n2zXp8WA+MLOkWIi015Lqy4doa\n807DYfJW+600c1P0YaOI/pgGO9dGllpFGcZBxoNN5ZMUUOjTmrXYUNYTGSZh93gd\nlGP3rlhvAlui17CUW2pLpl4CaSUDJWXQZyJH/ILZ+HMVgOMsc7eyZDLWyWWaNlJg\nEKSVNF3A8zx8oCtu+LjNPTqaiRvc3BI/ISRvb6r99v5oozCVQ/QIT24AxMLdmy01\nxOhXuDq48uoUTWssquuOnfFdF1WaK3c+AlaomX39re/rj4pvIB0ZlzuVN+LGG5WK\nYb6jCitvl8lnw9yTBZKZeU1+IFBvWgN72o4B+Y/qjZJ5N0pCK+ZSrIeLo8Pse/S6\nQIULNIKq3VuvLgliDcsOzIMCAwEAAQ==\n-----END PUBLIC KEY-----\n"
+>       }
+>     },
+>     {
+>       "id": "f40e1176-a4ff-36e6-b2ed-c2c2d18097a3",
+>       "type": "public_keys",
+>       "attributes": {
+>         "key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA9L57/eAXG5ILm1CKjDpz\nUqqEOq45OyIGXr4lYPPL090C8ulDHkqd8I4Zn1k0ZVLL1SC/mtWaE4+k5jrrQTQN\n3pFVDraUsI+ugvtyCwH0IViW0UaASkT26BQwdzN9/iGJACoL1pAOzQaEpBW9LtLB\nkgdNYHKZD++RD0gskbkhuaBM5yLx6sK2vES49GhCCog/qGkq9ogZIuXN9UMZpqgv\ntF9sBNLixGNxvsz7svxlaPFKim1eetVgWa53KTuypUJcnNWFJdft4NhmOabHfc4M\n3IyCtkrkkRmmoaYKr3ZK2fCYIRaUxyEv+YWM3ISV1ZkEEqlRtH2dybOotkxkJpOt\n3AKMk86FXrcgMmspf34wN8uFXVrtZht6XkbWWwjlG+I48V1SPM7SK9BrnDQNgoJe\nd5LhjyK4dNTJo+XM2C65iwKDc5OzQX+VS9mS5uSKzn9rDOkpjjMLqWxDdmK4X7uZ\nZMkFtDcuf0vYKuMcOQ4w1NH+FcFO1XPtKftIiLLY0SafUIqGEbt1bf0A/whLpTNE\nrc1WI1V8+DsYhqZqWDINbqNXS1/iRahiXPanmszR6npkxqdvtMsdM5FJJIz7x9a/\noPNqkDzHWZPwpZCdZO4mijx2CIcMqh8Y2NXlMI/FDlO/qUgmFz1gf9Fm41HLmFzS\n5LG5KbxmgbPJlM3Q8s6TAl0CAwEAAQ==\n-----END PUBLIC KEY-----\n"
+>       }
+>     }
+bash: data:: command not found
+bash: id:: command not found
+bash: type:: command not found
+bash: attributes:: command not found
+bash: key:: command not found
+bash: },: command not found
+bash: id:: command not found
+bash: type:: command not found
+bash: attributes:: command not found
+bash: key:: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $   ]
+bash: ]: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ }
+bash: syntax error near unexpected token `}'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ """
+> This is Python 3 module and utility to encrypt file for DIDWW API 3.
+> 
+> File encrypted with mode `sandbox` could be uploaded to `POST https://sandbox-api.didww.com/v3/encrypted_files`.
+> 
+> File encrypted with mode `production` could be uploaded to `POST https://api.didww.com/v3/encrypted_files`.
+> 
+>     .. highlight:: python
+>     .. code-block:: python
+> 
+>         from didww_encrypt import Encrypt, MODE_PRODUCTION
+> 
+>         with open("doc.pdf", mode="rb") as f:
+>             data = f.read()
+> 
+>         enc = Encrypt.new(MODE_PRODUCTION)
+>         enc_data = enc.encrypt(data)
+>         enc_filename = "doc.pdf.enc"
+>         with open(enc_filename, mode="wb") as f:
+>             f.write(enc_data)
+> 
+>         print(f"encrypted file saved: {enc_filename}")
+>         print(f"fingerprint: {enc.fingerprint}")
+> """
+bash: sandbox: command not found
+bash: POST: command not found
+bash: production: command not found
+bash: POST: command not found
+DBOX = "sandbox"
+MODE_PRODUCTION = "production"
+URbash: $'\nThis is Python 3 module and utility to encrypt file for DIDWW API 3.\n\nFile encrypted with mode  could be uploaded to .\n\nFile encrypted with mode  could be uploaded to .\n\n    .. highlight:: python\n    .. code-block:: python\n\n        from didww_encrypt import Encrypt, MODE_PRODUCTION\n\n        with open(doc.pdf, mode=rb) as f:\n            data = f.read()\n\n        enc = Encrypt.new(MODE_PRODUCTION)\n        enc_data = enc.encrypt(data)\n        enc_filename = doc.pdf.enc\n        with open(enc_filename, mode=wb) as f:\n            f.write(enc_data)\n\n        print(fencrypted': command not found
+I_SANDBOX = "https://sandbox-api.didww.com/v3/public_keys"
+URI_PRODUCTION = "https://api.didww.com/v3/public_keys"
+MODES = [MODE_SANDBOX, MODE_PRODUCT@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+ION]
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ MODE_SANDBOX = "sandbox"
+bash: MODE_SANDBOX: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ MODE_PRODUCTION = "production"
+bash: MODE_PRODUCTION: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ URI_SANDBOX = "https://sandbox-api.didww.com/v3/public_keys"
+bash: URI_SANDBOX: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ URI_PRODUCTION = "https://api.didww.com/v3/public_keys"
+bash: URI_PRODUCTION: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ MODES = [MODE_SANDBOX, MODE_PRODUCTION]
+bash: MODES: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import unittest
+bash: import: command not found
+t os
+from tests import redirect_all, build_buffers, read_fixture, decrypt, TESTS_ROOT
+from didww_encrypt import URI_SANDBOX, URI_PRODUCTION
+from didww@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import json
+_encrypt.command_line import main
+
+
+def run_main(abash: import: command not found
+rgs: list = None, in_data: bytes = None) -> (int, bytes, str):
+    """Runs main command line and cat@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import httpretty
+ch stdin, stdout, stderr.
+
+    :param args: argumebash: import: command not found
+nts for command line.
+    :param in_data: stdin bytes.
+    :return: exit code, stdout bytes, stderr string.
+    """
+    in_io, out_io, err_io = build_@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import os
+bash: import: command not found
+buffers(in_data is None)
+    if in_data is not None:
+        in_io.buffer.write(in_data)
+    with re@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from tests import redirect_all, build_buffers, read_fixture, decrypt, TESTS_ROOT
+from: can't read /var/mail/tests
+e = main(args=args)
+    out_data = out_io.buffer.read()
+    err_data = err_io.read()
+    return exitcode, out_data, err_data
+
+
+class TestCommandLine(u@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from didww_encrypt import URI_SANDBOX, URI_PRODUCTION
+from: can't read /var/mail/didww_encrypt
+nittest.TestCase):
+    @httpretty.activate(allow_net_connect=False)
+    def test_mode_sandbox(self):
+        private_keys = json.loads(read_fixture("p@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from didww_encrypt.command_line import main
+rivate_keys.json"))
+        httpretty.register_urifrom: can't read /var/mail/didww_encrypt.command_line
+(
+            httpretty.GET, URI_SANDBOX, body=read_fixture("public_keys.json")
+        )
+
+        args = "--mode sandbox".split(" ")
+        input_da@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+ta = "test data".encode("utf-8")
+        exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+
+        self.assertEqual("", err_data@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+)
+        self.assertEqual(0, exitcode)
+
+        decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+        self.assertEqual(input_data@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ def run_main(args: list = None, in_data: bytes = None) -> (int, bytes, str):
+bash: syntax error near unexpected token `('
+, decrypted_a)
+        decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+        self.assertEqual(input_data, decrypted_b)
+
+    @httpr@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     """Runs main command line and catch stdin, stdout, stderr.
+> 
+>     :param args: arguments for command line.
+>     :param in_data: stdin bytes.
+>     :return: exit code, stdout bytes, stderr string.
+>     """
+bash: $'Runs main command line and catch stdin, stdout, stderr.\n\n    :param args: arguments for command line.\n    :param in_data: stdin bytes.\n    :return: exit code, stdout bytes, stderr string.\n    ': command not found
+etty.activate(allow_net_connect=False)
+    def test_mode_production(self):
+        private_keys = json.loads(read_fixture("private_keys.json"))
+      @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     in_io, out_io, err_io = build_buffers(in_data is None)
+bash: syntax error near unexpected token `('
+T, URI_PRODUCTION, body=read_fixture("public_keys.json")
+        )
+
+        args = "--mode productio@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     if in_data is not None:
+>         in_io.buffer.write(in_data)
+bash: syntax error near unexpected token `in_data'
+ode("utf-8")
+        exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+
+       @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     with redirect_all(in_io, out_io, err_io):
+bash: syntax error near unexpected token `('
+ self.assertEqual("", err_data)
+        self.assertEqual(0, exitcode)
+
+        decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+     @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode = main(args=args)
+bash: syntax error near unexpected token `('
+   self.assertEqual(input_data, decrypted_a)
+        decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+        self.assertEqual(input_@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     out_data = out_io.buffer.read()
+bash: syntax error near unexpected token `('
+data, decrypted_b)
+
+    @httpretty.activate(allow_net_connect=False)
+    def test_input_file(self):
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     err_data = err_io.read()
+bash: syntax error near unexpected token `('
+        private_keys = json.loads(read_fixture("private_keys.json"))
+        httpretty.register_uri(
+            httpretty.GET, URI_PRODUCTION, body=r@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     return exitcode, out_data, err_data
+bash: return: exitcode,: numeric argument required
+bash: return: can only `return' from a function or sourced script
+ead_fixture("public_keys.json")
+        )
+
+        in_path = f"{TESTS_ROOT}/fixtures/test_file.txt"
+        with open(in_path, mode="rb") as f:
+      @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+      in_file_data = f.read()
+        args = f"--mode production --input {in_path}".split(" ")
+        exitcode, out_data, err_data = run_main(args=args)
+
+        self.assertEqual("", err_data)
+      @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+  self.assertEqual(0, exitcode)
+
+        decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+        self.assertEqual(in_file_data, decr@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ class TestCommandLine(unittest.TestCase):
+bash: syntax error near unexpected token `('
+ypted_a)
+        decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+        self.asse@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+rtEqual(in_file_data, decrypted_b)
+
+    @httpretty.activate(allow_net_connect=False)
+    def test_output_file(self):
+        private_keys = json.loads@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_mode_sandbox(self):
+bash: syntax error near unexpected token `('
+(read_fixture("private_keys.json"))
+        httpretty.register_uri(
+            httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+ @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+       )
+
+        input_data = "test data".encode("utf-8")
+        out_path = f"{TESTS_ROOT}/fixtures/test.enc"
+        args = f"--mode production --o@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+utput {out_path}".split(" ")
+        exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+        with open(out_path, mode="rb") as @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_SANDBOX, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+f:
+            out_file_data = f.read()
+        os.remove(out_path)
+
+        self.assertEqual("", err_data)
+        self.assertEqual(0, exitcode)
+    @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+    self.assertEqual(b"", out_data)
+
+        decrypted_a = decrypt(out_file_data, private_keys["private_key_a"], 0)
+        self.assertEqual(input_dat@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+a, decrypted_a)
+        decrypted_b = decrypt(out_file_data, private_keys["private_key_b"], 1)
+        self.assertEqual(input_data, decrypted_b)
+
+    @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = "--mode sandbox".split(" ")
+bash: syntax error near unexpected token `('
+@httpretty.activate(allow_net_connect=False)
+    def test_fingerprint(self):
+        httpretty.register_uri(
+            httpretty.GET, URI_PRODUCTION@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         input_data = "test data".encode("utf-8")
+bash: syntax error near unexpected token `('
+, body=read_fixture("public_keys.json")
+        )
+
+        args = "--mode production -f".split(" ")
+        exitcode, out_data, err_data = run_main(ar@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+bash: syntax error near unexpected token `('
+gs=args)
+
+        self.assertEqual("", err_data)
+        self.assertEqual(0, exitcode)
+        self.assertEqual(
+            "ca5af2d14bee923a0a0d1687@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf\n",
+            out_data.decode("utf-8"),
+        )
+
+    @httpretty.activate(allow_net_con@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("", err_data)
+bash: syntax error near unexpected token `"",'
+nect=False)
+    def test_no_input(self):
+        httpretty.register_uri(
+            httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.jso@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(0, exitcode)
+bash: syntax error near unexpected token `0,'
+n")
+        )
+
+        args = "--mode production".split(" ")
+        exitcode, out_data, err_data = run_main(args=args)
+
+        self.assertEqual("inp@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+ut file or pipe data must be provided\n", err_data)
+        self.assertEqual(2, exitcode)
+        self.assertEqual(b"", out_data)
+
+    @httpretty.acti@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+vate(allow_net_connect=False)
+    def test_fetch_failed(self):
+        httpretty.register_uri(
+            httpretty.GET,
+            URI_PRODUCTION,
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_a)
+bash: syntax error near unexpected token `input_data,'
+            status=500,
+            body=json.dumps({"error": "server error"}),
+        )
+
+        args = "--m@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+_data = "test data".encode("utf-8"@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_b)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_mode_production(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+  bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = "--mode production".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         input_data = "test data".encode("utf-8")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+bash: syntax error near unexpected token `('
+_keys = json.loads(read_fixture("private_keys.json"))
+      @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("", err_data)
+bash: syntax error near unexpected token `"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(0, exitcode)
+bash: syntax error near unexpected token `0,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_a)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_b)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_input_file(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         in_path = f"{TESTS_ROOT}/fixtures/test_file.txt"
+bash: in_path: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         with open(in_path, mode="rb") as f:
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             in_file_data = f.read()
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = f"--mode production --input {in_path}".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("", err_data)
+bash: syntax error near unexpected token `"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(0, exitcode)
+bash: syntax error near unexpected token `0,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(in_file_data, decrypted_a)
+bash: syntax error near unexpected token `in_file_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(in_file_data, decrypted_b)
+bash: syntax error near unexpected token `in_file_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_output_file(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         input_data = "test data".encode("utf-8")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         out_path = f"{TESTS_ROOT}/fixtures/test.enc"
+bash: out_path: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = f"--mode production --output {out_path}".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         with open(out_path, mode="rb") as f:
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             out_file_data = f.read()
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         os.remove(out_path)
+bash: syntax error near unexpected token `out_path'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("", err_data)
+bash: syntax error near unexpected token `"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(0, exitcode)
+bash: syntax error near unexpected token `0,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(b"", out_data)
+bash: syntax error near unexpected token `b"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(out_file_data, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_a)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(out_file_data, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_b)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_fingerprint(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = "--mode production -f".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("", err_data)
+bash: syntax error near unexpected token `"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(0, exitcode)
+bash: syntax error near unexpected token `0,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             "ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf\n",
+bash: ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf\n,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             out_data.decode("utf-8"),
+bash: syntax error near unexpected token `"utf-8"'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_no_input(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = "--mode production".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("input file or pipe data must be provided\n", err_data)
+bash: syntax error near unexpected token `"input file or pipe data must be provided\n",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(2, exitcode)
+bash: syntax error near unexpected token `2,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(b"", out_data)
+bash: syntax error near unexpected token `b"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_fetch_failed(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET,
+bash: httpretty.GET,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             URI_PRODUCTION,
+bash: URI_PRODUCTION,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             status=500,
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             body=json.dumps({"error": "server error"}),
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = "--mode production".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         input_data = "test data".encode("utf-8")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             f"failed to fetch keys from {URI_PRODUCTION}: 500 Internal Server Error\n",
+bash: ffailed to fetch keys from {URI_PRODUCTION}: 500 Internal Server Error\n,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             err_data,
+bash: err_data,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(3, exitcode)
+bash: syntax error near unexpected token `3,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(b"", out_data)
+bash: syntax error near unexpected token `b"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_custom_uri(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         uri = "https://example.com/keys"
+bash: uri: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, uri, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         args = f"--uri {uri}".split(" ")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         input_data = "test data".encode("utf-8")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exitcode, out_data, err_data = run_main(args=args, in_data=input_data)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("", err_data)
+bash: syntax error near unexpected token `"",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(0, exitcode)
+bash: syntax error near unexpected token `0,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(out_data, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_a)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(out_data, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(input_data, decrypted_b)
+bash: syntax error near unexpected token `input_data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import json
+bash: import: command not found
+tests import decrypt, read_fixture
+from Cryptodome.Random import get_random_bytes
+from didww_encrypt import (
+    Encrypt,
+    URI_SANDBOX,
+    URI_PR@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import unittest
+bash: import: command not found
+ODUCTION,
+    MODE_SANDBOX,
+    MODE_PRODUCTION,
+)
+
+
+class TestEncrypt(unittest.TestCase):
+    @http@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import httpretty
+retty.activate(allow_net_connect=False)
+    def tebash: import: command not found
+st_initialize_mode_sandbox(self):
+        httpretty.register_uri(
+            httpretty.GET, URI_SANDBOX, body=read_fixture("public_keys.json")
+      @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from tests import decrypt, read_fixture
+from: can't read /var/mail/tests
+  )
+        enc = Encrypt.new(mode=MODE_SANDBOX)
+        self.assertEqual(
+            "ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa8@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from Cryptodome.Random import get_random_bytes
+83d0ac12b0fdd79f95bcf",
+            enc.fingerprinfrom: can't read /var/mail/Cryptodome.Random
+t,
+        )
+        data = get_random_bytes(1024 * 1024)  # 1MB
+        encrypted = enc.encrypt(data)
+        private_keys = json.loads(read_fixture(@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from didww_encrypt import (
+bash: syntax error near unexpected token `('
+"private_keys.json"))
+        decrypted_a = decrypt(encrypted, private_keys["private_key_a"], 0)
+        self.assertEqual(data, decrypted_a)
+        d@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     Encrypt,
+bash: Encrypt,: command not found
+ecrypted_b = decrypt(encrypted, private_keys["private_key_b"], 1)
+        self.assertEqual(data, decrypted_b)
+
+    @httpretty.activate(allow_net_conne@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     URI_SANDBOX,
+bash: URI_SANDBOX,: command not found
+ct=False)
+    def test_initialize_mode_production(self):
+        httpretty.register_uri(
+            httpretty.GET, URI_PRODUCTION, body=read_fixture(@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     URI_PRODUCTION,
+bash: URI_PRODUCTION,: command not found
+"public_keys.json")
+        )
+        enc = Encrypt.new(mode=MODE_PRODUCTION)
+        self.assertEqual(
+            "ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     MODE_SANDBOX,
+bash: MODE_SANDBOX,: command not found
+",
+            enc.fingerprint,
+        )
+        data = get_random_bytes(1024 * 1024)  # 1MB
+        encrypted = enc.encrypt(data)
+        private_keys = json.loads(read_fixture("private_keys.json"))@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     MODE_PRODUCTION,
+bash: MODE_PRODUCTION,: command not found
+keys["private_key_a"], 0)
+        self.assertEqual(data, decrypted_a)
+        decrypted_b = decrypt(@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ )
+bash: syntax error near unexpected token `)'
+encrypted, private_keys["private_key_b"], 1)
+        self.assertEqual(data, decrypted_b)
+
+    @httpretty.activate(allow_net_connect=False)
+    def tes@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+t_initialize_custom_uri(self):
+        uri = "https://api.example.com/keys"
+        httpretty.register_uri(
+            httpretty.GET, uri, body=read_@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+fixture("public_keys.json")
+        )
+        enc = Encrypt.new(uri=uri)
+        self.assertEqual(
+            "ca5af2d14bee923a0a0d1687b7c77e7211a57f@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ class TestEncrypt(unittest.TestCase):
+bash: syntax error near unexpected token `('
+84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf",
+            enc.fingerprint,
+        )
+        data = get_random_bytes(1024 * 1024)  # 1MB
+        enc@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+rypted = enc.encrypt(data)
+        private_keys = json.loads(read_fixture("private_keys.json"))
+        decrypted_a = decrypt(encrypted, private_keys[@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_initialize_mode_sandbox(self):
+bash: syntax error near unexpected token `('
+, decrypted_a)
+        decrypted_b = decrypt(encrypted, private_keys["private_key_b"], 1)
+        se@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'lf.assertEqual(data, decrypted_b)
+
+    def test_wi
+thout_mode_nor_uri(self):
+        exception = None
+        try:
+            Encrypt.new()
+        ex@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_SANDBOX, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+cept BaseException as e:
+            exception = e
+        self.assertIsInstance(exception, ValueError)
+        self.assertEqual("Valid mode, or uri m@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+ust be provided", str(exception))
+
+    def test_without_invalid_mode(self):
+        exception = None
+        try:
+            Encrypt.new(mode="foo")
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         enc = Encrypt.new(mode=MODE_SANDBOX)
+bash: syntax error near unexpected token `('
+        except BaseException as e:
+            exception = e
+        self.assertIsInstance(exception, ValueError)
+        self.assertEqual("Valid mode@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(
+bash: syntax error near unexpected token `newline'
+, or uri must be provided", str(exception))
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             "ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf",
+bash: ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             enc.fingerprint,
+bash: enc.fingerprint,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         data = get_random_bytes(1024 * 1024)  # 1MB
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         encrypted = enc.encrypt(data)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(encrypted, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_a)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(encrypted, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_b)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_initialize_mode_production(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, URI_PRODUCTION, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         enc = Encrypt.new(mode=MODE_PRODUCTION)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             "ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf",
+bash: ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             enc.fingerprint,
+bash: enc.fingerprint,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         data = get_random_bytes(1024 * 1024)  # 1MB
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         encrypted = enc.encrypt(data)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(encrypted, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_a)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(encrypted, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_b)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     @httpretty.activate(allow_net_connect=False)
+bash: syntax error near unexpected token `allow_net_connect=False'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_initialize_custom_uri(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         uri = "https://api.example.com/keys"
+bash: uri: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         httpretty.register_uri(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             httpretty.GET, uri, body=read_fixture("public_keys.json")
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         enc = Encrypt.new(uri=uri)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             "ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf",
+bash: ca5af2d14bee923a0a0d1687b7c77e7211a57f84:::683150ee69b4d906aa883d0ac12b0fdd79f95bcf,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             enc.fingerprint,
+bash: enc.fingerprint,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         data = get_random_bytes(1024 * 1024)  # 1MB
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         encrypted = enc.encrypt(data)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         private_keys = json.loads(read_fixture("private_keys.json"))
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(encrypted, private_keys["private_key_a"], 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_a)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(encrypted, private_keys["private_key_b"], 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_b)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_without_mode_nor_uri(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exception = None
+bash: exception: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         try:
+bash: try:: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             Encrypt.new()
+>         except BaseException as e:
+bash: syntax error near unexpected token `except'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             exception = e
+bash: exception: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertIsInstance(exception, ValueError)
+bash: syntax error near unexpected token `exception,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("Valid mode, or uri must be provided", str(exception))
+bash: syntax error near unexpected token `"Valid mode, or uri must be provided",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_without_invalid_mode(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         exception = None
+bash: exception: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         try:
+bash: try:: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             Encrypt.new(mode="foo")
+bash: syntax error near unexpected token `mode="foo"'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         except BaseException as e:
+bash: except: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             exception = e
+bash: exception: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertIsInstance(exception, ValueError)
+bash: syntax error near unexpected token `exception,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual("Valid mode, or uri must be provided", str(exception))
+bash: syntax error near unexpected token `"Valid mode, or uri must be provided",'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import unittest
+bash: import: command not found
+e_rsa_key
+from Cryptodome.Random import get_random_bytes
+from didww_encrypt import encryption
+
+
+class TestEncryption(unittest.TestCase):
+    def test_@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from tests import decrypt, generate_rsa_key
+from: can't read /var/mail/tests
+encrypt(self):
+        pubkey_a, private_key_a = generate_rsa_key()
+        pubkey_b, private_key_b = generate_rsa_key()
+        data = get_random_byt@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from Cryptodome.Random import get_random_bytes
+from: can't read /var/mail/Cryptodome.Random
+es(1024 * 1024 * 20)  # 20MB
+        encrypted = encryption.encrypt(data, pubkey_a, pubkey_b)
+        decrypted_a = decrypt(encrypted, private_key_a, @ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from didww_encrypt import encryption
+0)
+        decrypted_b = decrypt(encrypted, privatfrom: can't read /var/mail/didww_encrypt
+e_key_b, 1)
+        self.assertEqual(data, decrypted_a)
+        self.assertEqual(data, decrypted_b)
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ class TestEncryption(unittest.TestCase):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_encrypt(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         pubkey_a, private_key_a = generate_rsa_key()
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         pubkey_b, private_key_b = generate_rsa_key()
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         data = get_random_bytes(1024 * 1024 * 20)  # 20MB
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         encrypted = encryption.encrypt(data, pubkey_a, pubkey_b)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_a = decrypt(encrypted, private_key_a, 0)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         decrypted_b = decrypt(encrypted, private_key_b, 1)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_a)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(data, decrypted_b)
+bash: syntax error near unexpected token `data,'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ import unittest
+bash: import: command not found
+int
+
+
+pubkey_a = """-----BEGIN RSA PUBLIC KEY-----
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA2t8H+QJMz+/y5NygzIAF
+cdJnq/4x7seJPvlKTKeKLWWfiMqRefPYqfWn0sVDwzaKW4Eic8c68z+EzyDXTTa0
+YHG+RmoN9m4W9wBVoZZ@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ from didww_encrypt import fingerprint
+rESskGSyLyB6mgc4kcv5PIdb3JbmdJJxNGslKUn8DeIin
+j6VIfrom: can't read /var/mail/didww_encrypt
+t97hHSUVicf0QeA3W+nNpwAsnxCVn5mRTGlIYmmbi9RClWul/50XTcOMWPJf
+3hkFBDuCJQlqO+HFqCmeRqWuoznHlVENBp2wAF8epCLiau1S9BUG4V5zrQrm6LvM
+Fh6K9vCQyWAWTCNjiT8rfCcP@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+XudzuznR7l0FnVMcJMqI2YxHw3yjHix+MH2SjZcr
+eaawq9h6gTjDJArTqJZDv8jbvQqg+KXClz+2C1RhDATzT358LvcM8jRONc+tcnZd
+fU1loNgslEy8V0zB1LxGjWWmAZ3Jqtb08WS3CAoKd2ps@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+QPz1MyaKXUl8r7v+ZTif
+yG1+xDEgfyPTH1PuNQGBmPhu1KlhsUAG1i/m51FIMTkmV/n+BN9706InjWFsDvkS
+Jbrp0PH94y+6LxTnRs1A3HcQbjuI5YbBeP2U867NpcWuDhNAC+z3XzBoTK0qlTPi@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ pubkey_a = """-----BEGIN RSA PUBLIC KEY-----
+> MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA2t8H+QJMz+/y5NygzIAF
+> cdJnq/4x7seJPvlKTKeKLWWfiMqRefPYqfWn0sVDwzaKW4Eic8c68z+EzyDXTTa0
+> YHG+RmoN9m4W9wBVoZZrESskGSyLyB6mgc4kcv5PIdb3JbmdJJxNGslKUn8DeIin
+> j6VIt97hHSUVicf0QeA3W+nNpwAsnxCVn5mRTGlIYmmbi9RClWul/50XTcOMWPJf
+> 3hkFBDuCJQlqO+HFqCmeRqWuoznHlVENBp2wAF8epCLiau1S9BUG4V5zrQrm6LvM
+> Fh6K9vCQyWAWTCNjiT8rfCcPXudzuznR7l0FnVMcJMqI2YxHw3yjHix+MH2SjZcr
+> eaawq9h6gTjDJArTqJZDv8jbvQqg+KXClz+2C1RhDATzT358LvcM8jRONc+tcnZd
+> fU1loNgslEy8V0zB1LxGjWWmAZ3Jqtb08WS3CAoKd2psQPz1MyaKXUl8r7v+ZTif
+> yG1+xDEgfyPTH1PuNQGBmPhu1KlhsUAG1i/m51FIMTkmV/n+BN9706InjWFsDvkS
+> Jbrp0PH94y+6LxTnRs1A3HcQbjuI5YbBeP2U867NpcWuDhNAC+z3XzBoTK0qlTPi
+> CvqR0iSB1IWgTS59VJIbDXOMTIBvn5/QUsQG4w8X0R+mP9XRH87spI9nX87Bv9za
+> tGvxOAVxjx+/BOLBZcS9nckCAwEAAQ==
+> -----END RSA PUBLIC KEY-----
+> """
+bash: pubkey_a: command not found
+FAAOCAg8AMIICCgKCAgEAvxO1LnsVQXtsiqHhDGpx
+rsqL97AuPDU36B1Jj56R6600i920UfDk5QYXKN+xvjOycIcyzfl9CMAwusRcXFAn
+nexv6WcB0ub8TT4bJ2C+citZp77ww35lTJRBUKBfljk@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ pubkey_b = """-----BEGIN RSA PUBLIC KEY-----
+> MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvxO1LnsVQXtsiqHhDGpx
+> rsqL97AuPDU36B1Jj56R6600i920UfDk5QYXKN+xvjOycIcyzfl9CMAwusRcXFAn
+> nexv6WcB0ub8TT4bJ2C+citZp77ww35lTJRBUKBfljkP9x9gfZxnRRC8ySCoPnpW
+> qeoiVYQEG3St8s+VYL8vnSZwCE1TKctPFvdnpp9in7G5/iXhY666swulnBoaGEQN
+> f0+foQQKF7vVr8ZyDimIxpOHJf29O2h+qEMo98wje6T0/Nxk98JucIb8SquXTDwR
+> /LcbVVTfJO8uvxcPXwNMezPfKIHt0pMjQ2yLC7iQeHk6ZNe86ACBsBertiGiwoEc
+> wrJoYFUCD0M7Wlt6bm1AIREXbLHDnAYmj6e93d5pLlQe40savJg+nQX1/ESLlPiq
+> yE4M9rxgZdW5mt1PE9GJVXj5rZTU3AURp8PN0lrWtc8l3i2icn6zHPJMnYcBfNyh
+> vy7zcOsmmQnqBewrcviJZH26blPsDR17XK9bmjfAfriR+DxCllBdLgB6tCDKahwk
+> GquF5xFzAqukRi6Y14AqLvCBbs00sVQQDwbaTB3c4iAf4EHL+iSwedYWue0bA9R8
+> HmsNDhmmmNreToj4Zh9ERexSg1lCFUPGqrCnKKqO3BuoMQGkMl1ZY0gsxZ4qGJZA
+> F7Nkc8AJDVTsR/uZdATz1ckCAwEAAQ==
+> -----END RSA PUBLIC KEY-----"""
+bash: pubkey_b: command not found
+
+    def test_fingerprint(self):
+        result = fingerprint.calculate_fingerprint(pubkey_a, pubkey_b)
+        self.assertEqual(
+            "3cec19a@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+8adf27cf0323d91640b98e9dc501f212b:::434f83703c899ed16329252940773da8fa38678c",
+            result,
+        )
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ class TestFingerprint(unittest.TestCase):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $     def test_fingerprint(self):
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         result = fingerprint.calculate_fingerprint(pubkey_a, pubkey_b)
+bash: syntax error near unexpected token `('
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         self.assertEqual(
+bash: syntax error near unexpected token `newline'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             "3cec19a8adf27cf0323d91640b98e9dc501f212b:::434f83703c899ed16329252940773da8fa38678c",
+bash: 3cec19a8adf27cf0323d91640b98e9dc501f212b:::434f83703c899ed16329252940773da8fa38678c,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $             result,
+bash: result,: command not found
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $         )
+bash: syntax error near unexpected token `)'
+@ellipsis52 ➜ /workspaces/webtechnicom-stripe (main ✗) $ 

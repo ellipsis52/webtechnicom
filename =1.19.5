@@ -1,0 +1,10 @@
+Voice OUT Call Events
+Voice OUT Call Events allow you to receive real-time call events using HTTP protocol. There are no delays caused by batching and every request contains only one event. All events are delivered with HTTP POST request, content can be optionally gzipped. Example header:
+
+POST /call-events HTTP/1.1
+Host: 192.0.2.5
+User-Agent: CDR-streamer
+Accept: */*
+Content-Type: application/vnd.api+json
+Content-Encoding: gzip
+Content-Length: 2358

@@ -1,0 +1,152 @@
+Voice OUT Trunk Object
+Description
+
+Json API object with type voice_out_trunks.
+
+Request
+
+URI Parameters
+
+Name
+
+Type
+
+Is Required?
+
+Description
+
+id
+
+string
+
+Yes
+
+Unique ID identifier of Trunk.
+
+Data Attributes
+
+Name
+
+Type
+
+Description
+
+name
+
+string
+
+The name of the voice out trunk.
+
+allowed_sip_ips
+
+Array of strings
+
+The allowed origination IP list.
+
+on_cli_mismatch_action
+
+string
+
+The call action on CLI mismatch. Possible values are:
+
+send_original_cli - the system will pass the FROM header value to the termination gateway.
+reject call - the system will reject the call if the FROM header value does not match any of the allowed DIDs
+
+capacity_limit
+
+integer
+
+The capacity limit of the voice out trunk.
+
+username
+
+string
+
+The username for digest authentication method.
+
+password
+
+string
+
+The password for digest authentication method.
+
+created_at
+
+date&time
+
+The date&time of trunk creation.
+
+allow_any_did_as_cli
+
+boolean
+
+The option to enable all DIDs to be used as CLI for this voice out trunk.
+
+status
+
+string
+
+The status of the voice out trunk. Can be active or disabled.
+
+threshold_reached
+
+boolean
+
+The 24 hour limit indicator. If the threshold_amount has been reached during the 24 hours, this indicator will be true.
+
+threshold_amount
+
+string
+
+The 24 hour threshold limit.
+
+default_dst_action
+
+string
+
+The default destination action. Possible values are: allow or reject calls.
+
+dst_prefixes
+
+string
+
+The destination prefixes to which calls will be allowed or disallowed based on the default_dst_action.
+
+media_encryption_mode
+
+string
+
+Media encryption mode.
+See RFC4568 about SRTP SDES, RFC5764 about SRTP DTLS, and RFC6189 about ZRTP for more details.
+Possible values:
+‘disabled’ - Disabled
+‘srtp_sdes’ - SRTP SDES
+‘srtp_dtls’ - SRTP DTLS
+‘zrtp’ - ZRTP
+
+callback_url
+
+string
+
+The callback URI. Can be null or valid HTTP(s) URL.
+
+allowed_rtp_ips
+
+Array of strings
+
+The allowed origination RTP IP list.
+
+force_symmetric_rtp
+
+string
+
+Forced to work in Symmetric RTP / COMEDIA mode.
+
+rtp_ping
+
+integer
+
+Use RTP PING when connecting a call.
+After establishing the call, DIDWW will send empty RTP packet RTP PING.
+It is necessary if both parties operate in Symmetric RTP / Comedia mode and expect the other party to start sending RTP first.
+

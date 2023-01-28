@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json
+
+{
+  "data": {
+    "id": "457bf47d-446d-41cd-91c3-dfbda7bf0753",
+    "type": "voice_out_trunk_regenerate_credentials"
+  },
+  "meta": {
+    "api_version": "2022-05-10"
+  }
+}

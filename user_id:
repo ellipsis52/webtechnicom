@@ -1,0 +1,64 @@
+(base) iMac-de-Guido:webtechnicom-stripe-codespace-ellipsis52-silver-dollop-p
+q5j79764g43w5w webtechnicom$ ``python
+from didww_encrypt import Encrypt, MODE_PRODUCTION
+
+
+with open("doc.pdf", mode="rb") as f:
+    data = f.read()
+    
+enc = Encrypt.new(MODE_PRODUCTION)
+enc_data = enc.encrypt(data)
+enc_filename = "doc.pdf.enc"
+with open(enc_filename, mode="wb") as f:
+    f.write(enc_data)
+    
+print(f"encrypted file saved: {enc_filename}")
+print(f"fingerprint: {enc.fingerprint}")
+```Python 3.9.15 | packaged by conda-forge | (main, Nov 22 2022, 08:55:37) 
+[Clang 14.0.6 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from didww_encrypt import Encrypt, MODE_PRODUCTION
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/webtechnicom/Downloads/webtechnicom-stripe-codespace-ellipsis52-silver-dollop-pq5j79764g43w5w/didww_encrypt/Encrypt.py", line 1, in <module>
+    from didww_encrypt.fingerprint import calculate_fingerprint
+  File "/Users/webtechnicom/Downloads/webtechnicom-stripe-codespace-ellipsis52-silver-dollop-pq5j79764g43w5w/didww_encrypt/fingerprint.py", line 2, in <module>
+    from Cryptodome.Hash import SHA1
+ModuleNotFoundError: No module named 'Cryptodome'
+>>> 
+>>> 
+>>> with open("doc.pdf", mode="rb") as f:
+...     data = f.read()
+...     
+... enc = Encrypt.new(MODE_PRODUCTION)
+  File "<stdin>", line 4
+    enc = Encrypt.new(MODE_PRODUCTION)
+    ^
+SyntaxError: invalid syntax
+>>> enc_data = enc.encrypt(data)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'enc' is not defined
+>>> enc_filename = "doc.pdf.enc"
+>>> with open(enc_filename, mode="wb") as f:
+...     f.write(enc_data)
+...     
+... print(f"encrypted file saved: {enc_filename}")
+  File "<stdin>", line 4
+    print(f"encrypted file saved: {enc_filename}")
+    ^
+SyntaxError: invalid syntax
+>>> print(f"fingerprint: {enc.fingerprint}")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'enc' is not defined
+>>> ```api_key : “pk_live_51AXJ0vFCL1ycm3RcEzn0xodUBXt9InPZHaW6ZqrHGiXPUPsmWGT9U27OtFMn7gxFtaemBMBfXUmKnsoWUETNefs100MaPY8r0N“
+  File "<stdin>", line 1
+    ```api_key : “pk_live_51AXJ0vFCL1ycm3RcEzn0xodUBXt9InPZHaW6ZqrHGiXPUPsmWGT9U27OtFMn7gxFtaemBMBfXUmKnsoWUETNefs100MaPY8r0N“
+    ^
+pk_live_51AXJ0vFCL1ycm3RcEzn0xodUBXt9InPZHaW6ZqrHGiXPUPsmWGT9U27OtFMn7gxFtaemBMBSyntaxError: invalid syntax
+>>> pk_live_51AXJ0vFCL1ycm3RcEzn0xodUBXt9InPZHaW6ZqrHGiXPUPsmWGT9U27OtFMn7gxFtaemBMBfXUmKnsoWUETNefs100MaPY8r0N
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'pk_live_51AXJ0vFCL1ycm3RcEzn0xodUBXt9InPZHaW6ZqrHGiXPUPsmWGT9U27OtFMn7gxFtaemBMBfXUmKnsoWUETNefs100MaPY8r0N' is not defined
+>>> 

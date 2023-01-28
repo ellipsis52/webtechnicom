@@ -1,0 +1,170 @@
+Call Start Event
+A Call Start Event is sent to the customer using HTTP protocol after call routing process is completed by DIDWW (destination determination process). SIP INVITE will originate from DIDWW to Call Destination.
+
+HTTP request payload example:
+
+{
+    "type": "outbound-call-start-event",
+    "id": "10-10282FC6-5F632C460006A397-AC8C7700",
+    "attributes": {
+        "source_ip" : "1.2.3.4",
+        "source_port": 5060,
+        "call_id" : "3eab288b2e0eb547122434ce0e648bb5",
+        "time_start": "2020-03-05T11:05:33.879559+00:00",
+        "pop": "NYC",
+        "original_src_number": "02089643990",
+        "src_number": "123439643990",
+        "dst_number": "441158720600",
+        "trunk_name": "Trunk 1",
+        "rate": "0.004",
+        "initial_billing_interval": 1,
+        "next_billing_interval": 1,
+        "p_charge_info": "<sip:02089643990@customer.example.com;billing-account-id=212>",
+        "diversion" : [ "<sip:+123456789@sip.didww.com>;reason=unconditional" ]
+    }
+}
+Call Connect Event
+A Call Connect Event is sent to the customer using HTTP protocol after 200OK/Connect is received from call legB (Destination). If the call is terminated before a successful handshake (200OK), Call Connect event will not be sent to the customer’s endpoint.
+
+HTTP request payload example:
+
+{
+    "type": "outbound-call-connect-event",
+    "id": "10-10282FC6-5F632C460006A397-AC8C7700",
+    "attributes": {
+        "source_ip" : "1.2.3.4",
+        "source_port": 5060,
+        "call_id" : "3eab288b2e0eb547122434ce0e648bb5",
+        "time_start": "2020-03-05T11:05:33.879559+00:00",
+        "time_connect": "2020-03-05T11:05:38.879559+00:00",
+        "pop": "NYC",
+        "original_src_number": "02089643990",
+        "src_number": "123439643990",
+        "dst_number": "441158720600",
+        "trunk_name": "Trunk 1",
+        "rate": "0.004",
+        "initial_billing_interval": 1,
+        "next_billing_interval": 1,
+        "p_charge_info": "<sip:02089643990@customer.example.com;billing-account-id=212>",
+        "diversion" : [ "<sip:+123456789@sip.didww.com>;reason=unconditional" ]
+    }
+}
+Call End Event
+A Call End Event is sent to the customer via HTTP protocol when the call is terminated in any way.
+
+HTTP request payload example:
+
+{
+    "type": "outbound-call-end-event",
+    "id": "10-10282FC6-5F632C460006A397-AC8C7700",
+    "attributes": {
+        "source_ip" : "1.2.3.4",
+        "source_port": 5060,
+        "call_id" : "3eab288b2e0eb547122434ce0e648bb5",
+        "time_start": "2020-03-05T11:05:33.879559+00:00",
+        "time_connect": "2020-03-05T11:05:38.879559+00:00",
+        "time_end": "2020-03-05T11:05:58.879559+00:00",
+        "duration": 10,
+        "pop": "NYC",
+        "original_src_number": "02089643990",
+        "src_number": "123439643990",
+        "dst_number": "441158720600",
+        "trunk_name": "Trunk 1",
+        "rate": "0.004",
+        "initial_billing_interval": 1,
+        "next_billing_interval": 1,
+        "p_charge_info": "<sip:02089643990@customer.example.com;billing-account-id=212>",
+        "diversion" : [ "<sip:+123456789@sip.didww.com>;reason=unconditional" ]
+    }
+}
+Description of Event attributes:
+
+type
+String
+Event type. Possible values for Voice OUT Call Events are outbound-call-start-event, outbound-call-connect-event, outbound-call-end-event
+
+id
+String
+Unique call identifier. All events related to the same call will contain the same id value.
+
+attributes
+Hash
+Structure contains all the CDR attributes. See description below.
+
+source_ip
+String
+IP address of the call originator.
+
+source_port
+Integer
+Port of the call originator.
+
+call_id
+String
+SIP Call-ID of the call leg between customer’s equipment and DIDWW. All events related to the same call will contain the same call_id value.
+
+time_start
+Timestamp
+Start time when the initial INVITE is received.
+
+time_connect
+Timestamp
+Time of the successful handshake (200OK SIP). For non-connected calls outbound-call-connect-event will not be originated and time_connect attribute at outbound-call-end-event will be null.
+
+time_end
+Timestamp
+Call disconnection time.
+
+duration
+Integer
+Call duration in seconds. For non-connected calls the duration is 0.
+
+pop
+String
+Location of the DIDWW equipment that processed the call. See DIDWW Point of Presence. Possible values:
+
+NYC USA New-York
+
+LAC USA Los Angeles
+
+MIA USA Miami
+
+FRA Germany, Frankfurt
+
+SG - Singapore
+
+original_src_number
+String
+Incoming Caller-ID.
+
+src_number
+String
+Incoming Caller-ID after applying rewrites.
+
+dst_number
+String
+Call destination number.
+
+trunk_name
+String
+Outbound trunk friendly name.
+
+rate
+Numeric
+Customer’s outbound call termination rate.
+
+initial_billing_interval
+Integer
+Initial billing interval for the outbound call termination.
+
+next_billing_interval
+Integer
+Next billing interval for the outbound call termination.
+
+p_charge_info
+String
+P-Charge-Info header value is received from the call originator. This header allows customers to add custom information to DIDWW CDR for technical and/or billing purposes. See Service description for more details.
+
+diversion
+Array of Strings
+Diversion header values are received from the call originator. Diversion headers order in INVITE request is preserved.

@@ -1,0 +1,30 @@
+black .
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ black .
+All done! ✨ 🍰 ✨
+14 files left unchanged.
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ usage: didww_encrypt [-h] [-i [INPUT]] [-o [OUTPUT]] [-f] (-m [{sandbox,production}] | -u [URI])
+bash: syntax error near unexpected token `('
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ Encrypt file for DIDWW API 3
+bash: Encrypt: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$ optional arguments:
+bash: optional: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$   -h, --help            show this help message and exit
+bash: -h,: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$   -i [INPUT], --input [INPUT]
+bash: -i: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$                         use input pipe when not passed
+bash: use: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$   -o [OUTPUT], --output [OUTPUT]
+bash: -o: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$                         use output pipe when not passed
+bash: use: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$   -f, --fingerprint     return fingerprint for public keys
+bash: -f,: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$   -m [{sandbox,production}], --mode [{sandbox,production}]
+bash: -m: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$                         which DIDWW server use for public keys fetching
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$   -u [URI], --uri [URI]
+bash: -u: command not found
+(venv) (base) iMac-de-Guido:DIDWW-Winner-main webtechnicom$                         custom URI for public keys fetching

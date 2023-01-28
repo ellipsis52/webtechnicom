@@ -1,0 +1,28 @@
+Delete Voice OUT Trunk
+Description
+
+Deletes the Trunk without possibility to retrieve.
+
+Request
+HTTP Method: DELETE
+
+URI Path: /v3/voice_out_trunks/
+
+URI Query Parameters:
+
+Name
+
+Type
+
+Is Required?
+
+Description
+
+id
+
+string
+
+Yes
+
+Unique ID identifier of Trunk.
+
